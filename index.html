@@ -1,1 +1,187 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Astrocycles — Coming Soon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#06060c;
+      --ink:#c9c7ff;
+      --glow:#8b86ff;
+      --accent:#a78bfa;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background: radial-gradient(1200px 800px at 70% 20%, #0e0d18 0%, #070713 45%, #05050c 80%), var(--bg);
+      overflow:hidden;
+      color:#e9e7ff;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    /* Star canvas container */
+    .space{
+      position:fixed; inset:0; overflow:hidden;
+      background: radial-gradient(1200px 900px at 20% 10%, rgba(40,40,90,0.25) 0%, rgba(10,10,25,0) 55%),
+                  radial-gradient(1000px 800px at 80% 60%, rgba(90,40,120,0.22) 0%, rgba(10,10,20,0) 60%);
+    }
+
+    /* Subtle drifting haze using blurred gradients */
+    .haze, .haze::before, .haze::after{
+      position:absolute; inset:-20vmax; content:""; display:block;
+      background:
+        radial-gradient(60vmax 60vmax at 30% 40%, rgba(160,120,255,.06) 0%, rgba(0,0,0,0) 70%),
+        radial-gradient(50vmax 50vmax at 70% 60%, rgba(120,200,255,.05) 0%, rgba(0,0,0,0) 70%),
+        radial-gradient(45vmax 45vmax at 40% 80%, rgba(180,120,255,.05) 0%, rgba(0,0,0,0) 70%);
+      filter: blur(30px) saturate(120%);
+      animation: drift 60s linear infinite;
+      opacity:.7;
+      mix-blend-mode: screen;
+    }
+    .haze::before{ animation-duration: 90s; opacity:.55; }
+    .haze::after{ animation-duration: 120s; opacity:.35; }
+    @keyframes drift{ from{ transform:translate3d(-3%, -2%, 0) rotate(0.0001deg);} to{ transform:translate3d(3%, 2%, 0) rotate(0.0001deg);} }
+
+    /* Stars */
+    .stars{ position:absolute; inset:0; pointer-events:none; }
+    .star{
+      position:absolute; width:2px; height:2px; border-radius:50%;
+      background: radial-gradient(circle, #fff, #e7e7ff 40%, transparent 60%);
+      opacity:.8;
+      animation: twinkle 4.6s ease-in-out infinite;
+      box-shadow: 0 0 6px rgba(255,255,255,.6), 0 0 12px rgba(135,125,255,.35);
+    }
+    @keyframes twinkle{
+      0%, 100% { opacity:.25; transform:scale(0.9); }
+      50% { opacity:1; transform:scale(1.35); }
+    }
+
+    /* Occasional shooting star */
+    .meteor{
+      position:absolute; width:1px; height:1px; background:transparent; overflow:visible; opacity:.0;
+      animation: shoot 7s linear infinite;
+    }
+    .meteor::before{
+      content:""; position:absolute; width:2px; height:2px; border-radius:50%; background:#fff; box-shadow:0 0 10px 3px rgba(255,255,255,.9);
+    }
+    .meteor::after{
+      content:""; position:absolute; top:0; left:-220px; width:220px; height:2px;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(173,168,255,.8), rgba(255,255,255,0));
+      filter: blur(1px);
+    }
+    @keyframes shoot{
+      0% { opacity:0; transform:translate3d(10vw, -10vh, 0) rotate(15deg); }
+      10% { opacity:.9; }
+      40% { transform:translate3d(-40vw, 30vh, 0) rotate(15deg); opacity:0; }
+      100% { opacity:0; }
+    }
+
+    /* Centerpiece copy */
+    .center{
+      position:fixed; inset:0; display:grid; place-items:center; text-align:center; padding:6vmin; z-index:10;
+    }
+    .title{
+      font-family: "Cinzel Decorative", serif;
+      font-weight:700; letter-spacing: .08em;
+      font-size: clamp(2.4rem, 8vw, 6.5rem);
+      color: var(--ink);
+      text-shadow:
+        0 0 8px rgba(138,132,255,.25),
+        0 0 18px rgba(138,132,255,.25),
+        0 0 42px rgba(110,120,255,.2);
+      margin: 0 0 1rem 0;
+    }
+    .subtitle{
+      font-size: clamp(1rem, 2.4vw, 1.2rem);
+      opacity:.7;
+    }
+
+    /* Optional QR placeholder (hidden for now, keep for later) */
+    .qr {
+      margin-top: 2rem; display:inline-flex; align-items:center; gap:.75rem; opacity:.85;
+      border: 1px solid rgba(167,139,250,.25);
+      border-radius: 12px; padding: .85rem 1.1rem; backdrop-filter: blur(4px);
+      background: rgba(20,18,38,.35);
+    }
+    .qr .box{
+      width: 64px; height: 64px; border-radius:8px; background: repeating-linear-gradient(45deg, #bdb8ff 0 6px, #2b2850 6px 12px);
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,.08);
+    }
+    .qr .text{ text-align:left; }
+    .qr .text strong{ display:block; font-weight:600; letter-spacing:.02em; }
+    .qr .text small{ opacity:.7; }
+
+    /* Footer credit (optional) */
+    .footer{
+      position:fixed; bottom:10px; left:50%; transform:translateX(-50%);
+      font-size:.8rem; opacity:.5; letter-spacing:.05em;
+    }
+
+    /* Subtle vignette */
+    .vignette{ position:fixed; inset:-10px; pointer-events:none; box-shadow: inset 0 0 160px rgba(0,0,0,.75); }
+  </style>
+</head>
+<body>
+  <div class="space">
+    <div class="haze"></div>
+    <div class="stars" id="stars"></div>
+    <div class="meteor" style="top:10%; left:70%; animation-delay: 4s"></div>
+    <div class="meteor" style="top:30%; left:80%; animation-delay: 12s"></div>
+    <div class="meteor" style="top:60%; left:60%; animation-delay: 20s"></div>
+  </div>
+
+  <main class="center">
+    <div>
+      <h1 class="title">Coming&nbsp;Soon…</h1>
+      <p class="subtitle">Astrocycles — a mindful way to track your cosmic rhythm.</p>
+
+      <!-- QR placeholder (uncomment when ready) -->
+      <!--
+      <div class="qr">
+        <div class="box" aria-hidden="true"></div>
+        <div class="text">
+          <strong>Get the app</strong>
+          <small>Scan the code to download</small>
+        </div>
+      </div>
+      -->
+    </div>
+  </main>
+
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="footer">© <span id="year"></span> Astrocycles</div>
+
+  <script>
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Generate twinkling stars
+    (function createStars(){
+      const container = document.getElementById('stars');
+      const count = Math.min(260, Math.max(120, Math.floor(window.innerWidth / 4)));
+      for(let i=0;i<count;i++){
+        const s = document.createElement('div');
+        s.className = 'star';
+        const size = Math.random() * 1.6 + 0.8; // 0.8 - 2.4px
+        const x = Math.random() * 100; // vw
+        const y = Math.random() * 100; // vh
+        const delay = (Math.random() * 6).toFixed(2) + 's';
+        const duration = (3 + Math.random() * 5).toFixed(2) + 's';
+        s.style.width = size + 'px';
+        s.style.height = size + 'px';
+        s.style.left = x + 'vw';
+        s.style.top = y + 'vh';
+        s.style.animationDelay = delay;
+        s.style.animationDuration = duration;
+        container.appendChild(s);
+      }
+    })();
+  </script>
+</body>
+</html>
