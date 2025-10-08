@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Privacy Policy - Astrocycles</title>
   <style>
     body {
@@ -10,97 +10,126 @@
       line-height: 1.6;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #1c0f2e, #2b1b47, #3b2461); 
+      background: linear-gradient(135deg, #1c0f2e, #2b1b47, #3b2461);
       color: #eee;
     }
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 2rem auto;
       padding: 2rem;
       background: rgba(30, 20, 50, 0.9);
       border-radius: 12px;
       box-shadow: 0 6px 16px rgba(0,0,0,0.6);
     }
-    h1, h2 {
-      color: #d9b3ff; 
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-    h2 {
-      font-size: 1.25rem;
-      margin-top: 2rem;
-      border-bottom: 2px solid rgba(255,255,255,0.15);
-      padding-bottom: 0.3rem;
-    }
-    p, li {
-      margin-bottom: 1rem;
-    }
-    ul {
-      padding-left: 1.5rem;
-    }
-    a {
-      color: #c29fff;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #aaa;
-      margin-top: 2rem;
+    h1, h2, h3 { color: #d9b3ff; }
+    h1 { font-size: 2rem; margin-bottom: 1rem; text-align: center; }
+    h2 { font-size: 1.25rem; margin-top: 2rem; border-bottom: 2px solid rgba(255,255,255,0.15); padding-bottom: 0.3rem; }
+    h3 { font-size: 1.05rem; margin-top: 1.25rem; }
+    p, li { margin-bottom: 1rem; }
+    ul { padding-left: 1.3rem; }
+    a { color: #c29fff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .muted { color: #bbb; font-size: 0.95rem; }
+    footer { text-align: center; font-size: 0.9rem; color: #aaa; margin-top: 2rem; }
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 1rem;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Privacy Policy for Astrocycles</h1>
-    <p><strong>Last Updated:</strong> [28/09/2025]</p>
+    <p><strong>Last Updated:</strong> 28/09/2025</p>
 
-    <h2>1. Information We Collect</h2>
-    <p>When you use Astrocycles, you may provide the following information:</p>
+    <p>Astrocycles (“we”, “us”, or “our”) respects your privacy. This policy explains what data the app processes locally on your device, what limited data may be collected by third-party advertising partners, and your choices.</p>
+
+    <h2>1) Information You Enter (Stored Only on Your Device)</h2>
+    <p>Astrocycles is designed so that your astrology data remains on <strong>your device</strong>. We do <strong>not</strong> transmit it to our servers.</p>
     <ul>
       <li>Name</li>
-      <li>Date of birth</li>
-      <li>Time of birth</li>
-      <li>Location of birth</li>
-      <li>Optional partner information (name, date, time, location of birth)</li>
-      <lu>Optional device location information</lu>
+      <li>Date/time of birth</li>
+      <li>Place of birth</li>
+      <li>Optional partner info (name, date/time/place of birth)</li>
+      <li>Optional device location (for moon/sun times & local sky info)</li>
+      <li>Journal entries or notes</li>
     </ul>
-    <p><strong>Important:</strong> All information you provide is <strong>stored only on your device</strong>. Astrocycles does not collect, transmit, or store this information on external servers.</p>
+    <p><strong>How it’s used:</strong> Solely to generate charts, sky windows, and interpretations inside the app. If you enable device location, it is used locally to personalize astronomical times. You can disable or clear location within your OS settings and/or in-app settings (where applicable).</p>
 
-    <h2>2. How Your Information Is Used</h2>
-    <p>The information you enter, including device location data is used <strong>solely within the App</strong> to generate personalized sky information as well as astrology charts and interpretations. We do not access, share, or upload this information.</p>
+    <h2>2) Advertising & Third-Party Data</h2>
+    <p>The free version of Astrocycles displays ads using the <strong>Google Mobile Ads SDK (AdMob)</strong>. We do not run our own analytics or back-end collection of your astrology inputs. However, AdMob may collect certain device and app-interaction data to serve and measure ads.</p>
 
-    <h2>3. Advertising</h2>
-    <p>Astrocycles displays third-party advertisements to support the App:</p>
+    <h3>What AdMob may collect</h3>
+    <div class="card">
+      <ul>
+        <li><strong>Identifiers:</strong> Android Advertising ID (AAID) or similar.</li>
+        <li><strong>Coarse location & IP-derived info:</strong> e.g., approximate region/country, for ad delivery and legal compliance.</li>
+        <li><strong>App interactions (App activity):</strong> ad impressions, clicks, viewability, and limited engagement signals.</li>
+        <li><strong>Device & diagnostics:</strong> device type, OS version, crash/error signals related to ads.</li>
+      </ul>
+      <p class="muted">These data points are processed by Google/AdMob under their privacy policy and used for: advertising/marketing, analytics/measurement, and fraud prevention/security/compliance.</p>
+    </div>
+
+    <h3>Personalized vs. Non-Personalized Ads</h3>
     <ul>
-      <li>Ads are provided by external ad networks (such as Google AdMob).</li>
-      <li>Currently, these ads are served using generic, non-personalized data.</li>
-      <li>In the future, personalized ads may be introduced. If so, ad networks may use device identifiers or app interactions to serve more relevant ads, in line with their own privacy policies and applicable consent requirements.</li>
-      <li>Astrocycles itself does not collect or control this data.</li>
+      <li><strong>Consent-based personalization (EEA/UK and where required):</strong> When you grant consent, AdMob may use data (e.g., AAID, app interactions) to show more relevant ads. If you deny or withdraw consent, the app requests <strong>non-personalized ads (NPA)</strong>.</li>
+      <li><strong>Outside consent regions:</strong> We honor your device settings (e.g., “Opt out of Ads Personalization”). You can also reset your Advertising ID.</li>
     </ul>
-    <p>For details on how ad providers handle information, please review their respective privacy policies.</p>
 
-    <h2>4. Data Sharing</h2>
-    <p>Astrocycles does not sell, rent, or share your personal information. Because all astrology data is stored locally on your device, it is never accessible to the developer. The only information that may be processed comes from third-party advertising networks as described above.</p>
+    <p>For details, see Google/AdMob’s privacy materials and how they use information for ads and measurement.</p>
 
-    <h2>5. Children’s Privacy</h2>
-    <p>Astrocycles is not directed toward children under the age of 13 (or the relevant age of digital consent in your country). We do not knowingly collect personal information from children.</p>
+    <h2>3) Do We Share or Sell Your Astrology Data?</h2>
+    <p><strong>No.</strong> Your astrology inputs (birth details, notes, etc.) stay on your device and are not sent to us. We do not sell your personal data.</p>
+    <p>Ad delivery involves <strong>sharing limited device/app data with AdMob</strong> (as a service provider/processor) to provide, measure, and secure ads. This is typical for free apps using third-party ads.</p>
 
-    <h2>6. Security</h2>
-    <p>Since your astrology data remains on your device, you maintain control over its security. We recommend using device security features (such as passcodes or biometrics) to protect your information.</p>
+    <h2>4) Your Choices & Controls</h2>
+    <ul>
+      <li><strong>Consent (EEA/UK):</strong> You can grant or deny consent for personalized ads in the consent prompt. You can revisit choices in app settings if provided, or by reinstalling/resetting consent where supported.</li>
+      <li><strong>Android ad personalization:</strong> On your device go to <em>Settings &gt; Google &gt; Ads</em> (or similar) to <strong>opt out of Ads Personalization</strong> and/or <strong>reset your Advertising ID (AAID)</strong>.</li>
+      <li><strong>Location:</strong> You can disable location permissions for Astrocycles in Android Settings.</li>
+      <li><strong>Data deletion:</strong> You can delete your astrology entries in the app. Because we don’t host your astrology data, removing the app (or clearing its storage) removes that local data.</li>
+    </ul>
 
-    <h2>7. Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Last Updated" date at the top of the page. </p>
+    <h2>5) Legal Bases (EEA/UK)</h2>
+    <ul>
+      <li><strong>Personalized advertising:</strong> <em>Consent</em>.</li>
+      <li><strong>Non-personalized ads, measurement & fraud prevention:</strong> <em>Legitimate interests</em> (and/or compliance obligations) of our advertising partners.</li>
+    </ul>
 
-    <h2>8. Contact Us</h2>
-    <p>If you have questions or concerns about this Privacy Policy, you can reach us at:</p>
+    <h2>6) Children’s Privacy</h2>
+    <p>Astrocycles is not directed to children under 13 (or the age of digital consent in your region). We do not knowingly collect personal information from children.</p>
+
+    <h2>7) Security</h2>
+    <p>Your astrology data remains on your device. We recommend using device security features (passcode/biometrics) and OS updates to protect your information.</p>
+
+    <h2>8) Retention</h2>
+    <p>Astrology data you enter is stored locally until you delete it or uninstall the app. Ad-related data retention is controlled by AdMob/Google per their policies (for ads measurement, fraud prevention, and regulatory compliance).</p>
+
+    <h2>9) International Transfers</h2>
+    <p>AdMob/Google may process limited device/ad data on servers located outside your country. See Google’s policies for details on safeguards used for international transfers.</p>
+
+    <h2>10) Changes to This Policy</h2>
+    <p>We may update this policy from time to time. Updates will be posted here with a new “Last Updated” date.</p>
+
+    <h2>11) Contact</h2>
+    <p>If you have questions or requests regarding this policy, contact us:</p>
     <p><strong>Email:</strong> <a href="mailto:Astrocycles137@outlook.com">Astrocycles137@outlook.com</a></p>
+
+    <h2>Appendix: Data Safety Summary (Google Play)</h2>
+    <div class="card">
+      <p><strong>Collected by Astrocycles (developer):</strong> <em>None.</em> Astrology inputs are processed and stored locally only.</p>
+      <p><strong>Collected by third parties (AdMob):</strong></p>
+      <ul>
+        <li><strong>App activity → App interactions:</strong> Yes (ads measurement), Shared with AdMob, Not ephemeral, Not linked to developer account identity.</li>
+        <li><strong>Device or other IDs (AAID):</strong> Yes (ads delivery/measurement), Shared with AdMob, Not ephemeral.</li>
+        <li><strong>Approximate location (via IP):</strong> Yes (ads delivery/compliance), Shared with AdMob, Not ephemeral.</li>
+        <li><strong>Diagnostics (crash/performance related to ads):</strong> Yes (fraud prevention, service reliability).</li>
+      </ul>
+      <p><strong>Purposes:</strong> Advertising/marketing, Analytics/measurement, Fraud prevention, security, compliance.</p>
+      <p><strong>Data handling choices:</strong> Personalized ads shown only with consent where required; otherwise non-personalized ads are requested.</p>
+    </div>
 
     <footer>
       <p>&copy; <script>document.write(new Date().getFullYear());</script> Astrocycles. All rights reserved.</p>
