@@ -3,53 +3,44 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Astrocycles — Track Your Cosmic Rhythm</title>
-
-  <!-- Meta / OG -->
-  <meta name="description" content="Astrocycles helps you track moon phases, retrogrades, and personal cycles using your natal data — all in one, witchy, ad-free app." />
-  <meta property="og:title" content="Astrocycles — Track Your Cosmic Rhythm" />
-  <meta property="og:description" content="Moon phases, retrogrades, and compatibility — all personalized to your natal chart." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="./assets/icon.png" />
-  <meta name="theme-color" content="#0b0a15" />
+  <title>Astrocycles — Your cosmic rhythm, beautifully organized</title>
+  <meta name="description" content="Astrocycles helps beginners and daily practitioners track moon phases, retrogrades, and compatibility—personalized to your natal data. Free to use.">
+  <meta name="theme-color" content="#0a0716">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ===== Theme ===== */
     :root{
       --bg:#06060c;
-      --card:#17162b;
       --ink:#e9e7ff;
-      --ink-dim:#bfbbe7;
+      --muted:#bdb9ff;
       --glow:#8b86ff;
-      --accent:#a78bfa;
-      --accent-2:#6c5ce7;
+      --accent:#a78bfa;  /* witchy purple */
+      --card: rgba(20,18,38,.55);
+      --card-strong: rgba(20,18,38,.8);
       --border: rgba(167,139,250,.25);
-      --muted: rgba(255,255,255,.65);
+      --ring: rgba(167,139,250,.6);
+      --ok:#6ee7b7;
+      --warn:#fbbf24;
     }
-    *{ box-sizing:border-box }
-    html,body{ height:100%; margin:0; }
-    body{
-      background:
-        radial-gradient(1200px 800px at 70% 20%, #0e0d18 0%, #070713 45%, #05050c 80%),
-        var(--bg);
+
+    html,body{
+      height:100%;
+      margin:0;
+      background: radial-gradient(1200px 800px at 70% 20%, #0e0d18 0%, #070713 45%, #05050c 80%), var(--bg);
       color:var(--ink);
       font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
-    a{ color: var(--ink); text-decoration: none; }
-    .container{ max-width:1100px; margin:0 auto; padding: clamp(16px, 3vw, 28px); }
 
-    /* ===== Cosmic background (haze + stars) ===== */
+    /* Space background */
     .space{
-      position:fixed; inset:0; z-index:-1; overflow:hidden;
-      background:
-        radial-gradient(1200px 900px at 20% 10%, rgba(40,40,90,0.25) 0%, rgba(10,10,25,0) 55%),
-        radial-gradient(1000px 800px at 80% 60%, rgba(90,40,120,0.22) 0%, rgba(10,10,20,0) 60%);
+      position:fixed; inset:0; overflow:hidden;
+      background: radial-gradient(1200px 900px at 20% 10%, rgba(40,40,90,0.25) 0%, rgba(10,10,25,0) 55%),
+                  radial-gradient(1000px 800px at 80% 60%, rgba(90,40,120,0.22) 0%, rgba(10,10,20,0) 60%);
+      z-index:-2;
     }
     .haze, .haze::before, .haze::after{
       position:absolute; inset:-20vmax; content:""; display:block;
@@ -58,231 +49,305 @@
         radial-gradient(50vmax 50vmax at 70% 60%, rgba(120,200,255,.05) 0%, rgba(0,0,0,0) 70%),
         radial-gradient(45vmax 45vmax at 40% 80%, rgba(180,120,255,.05) 0%, rgba(0,0,0,0) 70%);
       filter: blur(30px) saturate(120%);
-      animation: drift 60s linear infinite; opacity:.7; mix-blend-mode: screen;
+      animation: drift 60s linear infinite;
+      opacity:.7;
+      mix-blend-mode: screen;
     }
     .haze::before{ animation-duration: 90s; opacity:.55; }
     .haze::after{ animation-duration: 120s; opacity:.35; }
-    @keyframes drift{ from{ transform:translate3d(-3%, -2%, 0)} to{ transform:translate3d(3%, 2%, 0)} }
+    @keyframes drift{ from{ transform:translate3d(-3%, -2%, 0) rotate(0.0001deg);} to{ transform:translate3d(3%, 2%, 0) rotate(0.0001deg);} }
     .stars{ position:absolute; inset:0; pointer-events:none; }
     .star{
       position:absolute; width:2px; height:2px; border-radius:50%;
       background: radial-gradient(circle, #fff, #e7e7ff 40%, transparent 60%);
-      opacity:.8; animation: twinkle 4.6s ease-in-out infinite;
+      opacity:.8;
+      animation: twinkle 4.6s ease-in-out infinite;
       box-shadow: 0 0 6px rgba(255,255,255,.6), 0 0 12px rgba(135,125,255,.35);
     }
-    @keyframes twinkle{ 0%,100%{opacity:.25; transform:scale(.9)} 50%{opacity:1; transform:scale(1.35)} }
+    @keyframes twinkle{
+      0%, 100% { opacity:.25; transform:scale(0.9); }
+      50% { opacity:1; transform:scale(1.35); }
+    }
+    .meteor{
+      position:absolute; width:1px; height:1px; background:transparent; overflow:visible; opacity:.0;
+      animation: shoot 7s linear infinite;
+    }
+    .meteor::before{
+      content:""; position:absolute; width:2px; height:2px; border-radius:50%; background:#fff; box-shadow:0 0 10px 3px rgba(255,255,255,.9);
+    }
+    .meteor::after{
+      content:""; position:absolute; top:0; left:-220px; width:220px; height:2px;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(173,168,255,.8), rgba(255,255,255,0));
+      filter: blur(1px);
+    }
+    @keyframes shoot{
+      0% { opacity:0; transform:translate3d(10vw, -10vh, 0) rotate(15deg); }
+      10% { opacity:.9; }
+      40% { transform:translate3d(-40vw, 30vh, 0) rotate(15deg); opacity:0; }
+      100% { opacity:0; }
+    }
     .vignette{ position:fixed; inset:-10px; pointer-events:none; box-shadow: inset 0 0 160px rgba(0,0,0,.75); z-index:-1; }
 
-    /* ===== Header ===== */
+    /* Layout */
+    .wrap{ max-width:1120px; margin:0 auto; padding: calc(10vh + 24px) 20px 72px; }
     header{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px; padding-block: 10px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding: 16px 20px; max-width:1120px; margin:0 auto;
     }
-    .brand{ display:flex; align-items:center; gap:12px; }
-    .brand img{ width:40px; height:40px; object-fit:contain; border-radius:8px; }
-    .brand .name{ font-weight:800; letter-spacing:.05em; }
-    .chip{
-      font-size:.85rem; padding:.35rem .6rem; border:1px solid var(--border);
-      border-radius:999px; color:var(--ink); opacity:.8; background: rgba(20,18,38,.35); backdrop-filter: blur(6px);
+    .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink); }
+    .brand img{ width:36px; height:36px; border-radius:8px; object-fit:cover; filter: drop-shadow(0 0 8px rgba(167,139,250,.35)); }
+    .brand span{ font-weight:800; letter-spacing:.06em }
+    .cta{
+      appearance:none; border:1px solid var(--border); color:#fff; background:linear-gradient(180deg, rgba(167,139,250,.22), rgba(167,139,250,.1));
+      padding:.75rem 1rem; border-radius:12px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
+      box-shadow: 0 0 0 0 rgba(167,139,250,.0);
     }
+    .cta:hover{ box-shadow:0 0 0 4px var(--ring); }
+    .cta:active{ transform: translateY(1px); }
 
-    /* ===== Hero ===== */
-    .hero{
-      display:grid; gap:22px; grid-template-columns: 1.2fr .8fr; align-items:center;
-      margin-top: clamp(22px, 6vw, 48px);
-    }
-    @media (max-width: 900px){ .hero{ grid-template-columns:1fr; } }
+    /* Hero */
+    .hero{ text-align:center; margin-bottom: 56px; }
     .title{
-      font-family:"Cinzel Decorative", serif; font-weight:700; letter-spacing:.08em;
-      font-size: clamp(2.1rem, 6.5vw, 4.4rem); line-height:1.1;
-      text-shadow: 0 0 8px rgba(138,132,255,.25), 0 0 18px rgba(138,132,255,.25), 0 0 42px rgba(110,120,255,.2);
+      font-family: "Cinzel Decorative", serif;
+      font-weight:700; letter-spacing: .08em;
+      font-size: clamp(2.2rem, 8vw, 4.8rem);
+      color: var(--ink);
+      text-shadow:
+        0 0 8px rgba(138,132,255,.25),
+        0 0 18px rgba(138,132,255,.25),
+        0 0 42px rgba(110,120,255,.2);
+      margin: 0 0 .6rem 0;
     }
-    .subtitle{ color:var(--ink-dim); font-size: clamp(1rem, 2.4vw, 1.15rem); }
-    .cta-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:14px; }
-    .btn{
-      display:inline-flex; align-items:center; gap:.55rem; font-weight:700;
-      padding:.85rem 1rem; border-radius:12px; border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(167,139,250,.22), rgba(167,139,250,.08));
-      box-shadow: 0 10px 40px rgba(99, 102, 241, .25);
+    .tag{ font-size: clamp(1rem, 2.2vw, 1.15rem); opacity:.82; max-width:58ch; margin:0 auto 1.25rem; }
+    .hero .pills{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin: 16px 0 26px; }
+    .pill{
+      border:1px solid var(--border); border-radius:999px; padding:.5rem .8rem; font-size:.9rem; opacity:.9;
+      background: rgba(20,18,38,.35);
     }
-    .btn:hover{ transform: translateY(-1px); transition: .15s ease; }
-    .ghost{ background: transparent; box-shadow:none; opacity:.85; }
+    .subnote{ font-size:.9rem; opacity:.7; }
 
-    /* ===== Features ===== */
-    section{ margin-top: clamp(36px, 8vw, 72px); }
-    .grid{
-      display:grid; gap:16px;
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
+    /* Cards/sections */
+    .section{ margin: 56px 0; }
     .card{
-      background: rgba(23,22,43,.55);
-      border:1px solid var(--border);
-      border-radius:16px; padding:18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 40px rgba(0,0,0,.25);
     }
-    .card h3{ margin:.2rem 0 .35rem; font-size:1.05rem; letter-spacing:.02em }
-    .muted{ color:var(--muted) }
+    .grid{ display:grid; gap:16px; }
+    @media(min-width: 900px){ .grid.cols-3{ grid-template-columns: repeat(3, 1fr); } }
+    @media(min-width: 900px){ .grid.cols-2{ grid-template-columns: 1.2fr 1fr; } }
 
-    /* ===== Screenshots (scroll-snap) ===== */
-    .shots{
-      border:1px solid var(--border); border-radius:18px; overflow:hidden;
-      background: rgba(20,18,38,.4);
-    }
-    .rail{
-      display:flex; gap:10px; overflow:auto; scroll-snap-type: x mandatory; padding: 12px;
-    }
-    .rail img{
-      width: clamp(220px, 36vw, 320px); height: auto; border-radius:14px; scroll-snap-align:center;
-      border:1px solid rgba(255,255,255,.08); box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      background:#0e0e1a;
+    .card h3{ margin:.2rem 0 .4rem; font-size:1.15rem }
+    .card p{ margin:.2rem 0 0; opacity:.85 }
+    .feature-icon{
+      width:36px; height:36px; border-radius:10px; display:grid; place-items:center; margin-bottom:.35rem;
+      background: linear-gradient(180deg, rgba(167,139,250,.35), rgba(167,139,250,.12));
+      border: 1px solid var(--border);
+      color:#fff; font-weight:900;
+      text-shadow: 0 0 12px rgba(167,139,250,.6);
     }
 
-    /* ===== About / Footer ===== */
-    .about{ display:grid; gap:18px; grid-template-columns: 1.1fr .9fr; }
-    @media (max-width: 900px){ .about{ grid-template-columns:1fr; } }
-    .footer{
-      margin-top: 36px; padding:18px; border-top:1px solid rgba(255,255,255,.08);
-      display:flex; flex-wrap:wrap; align-items:center; gap:12px; justify-content:space-between; color:var(--muted);
-      font-size:.95rem;
+    /* Screens */
+    .screens{
+      display:grid; gap:12px; grid-template-columns: repeat(2,1fr); margin-top:12px;
     }
-    .links{ display:flex; gap:14px; flex-wrap:wrap; }
-    .links a{ color:var(--ink-dim); border-bottom:1px dashed rgba(255,255,255,.25) }
-    .kicker{ font-size:.85rem; opacity:.8 }
+    @media(min-width:900px){ .screens{ grid-template-columns: repeat(3,1fr);} }
+    .shot{
+      aspect-ratio: 9/19.5;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+      border:1px solid rgba(255,255,255,.08);
+      display:grid; place-items:center; font-size:.9rem; color:#c9c7ff; opacity:.85;
+      overflow:hidden;
+    }
+    .shot img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-    /* Visually-hidden (for accessibility) */
-    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+    /* Quote */
+    .quote{
+      display:flex; gap:14px; align-items:flex-start;
+      background: var(--card-strong); border:1px solid var(--border); border-radius:14px; padding:16px;
+    }
+    .quote b{ color:#fff }
+    .quote small{ opacity:.6 }
+
+    /* Footer */
+    footer{
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top: 72px;
+      background: linear-gradient(180deg, rgba(20,18,38,.4), rgba(20,18,38,.15));
+    }
+    .foot-wrap{
+      max-width:1120px; margin:0 auto; padding:20px; display:grid; gap:12px;
+    }
+    .foot-row{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+    .links a{
+      color: var(--muted); text-decoration:none; border-bottom:1px dashed rgba(167,139,250,.35);
+    }
+    .links a:hover{ color:#fff; border-bottom-color: var(--accent); }
+
+    /* A11y focus */
+    a:focus, button:focus { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <!-- cosmic bg -->
+  <!-- Space backdrop -->
   <div class="space" aria-hidden="true">
     <div class="haze"></div>
     <div class="stars" id="stars"></div>
-    <div class="vignette"></div>
+    <div class="meteor" style="top:10%; left:70%; animation-delay: 4s"></div>
+    <div class="meteor" style="top:30%; left:80%; animation-delay: 12s"></div>
+    <div class="meteor" style="top:60%; left:60%; animation-delay: 20s"></div>
   </div>
+  <div class="vignette" aria-hidden="true"></div>
 
-  <div class="container">
-    <!-- header -->
-    <header>
-      <div class="brand">
-        <!-- swap to your real filenames -->
-        <img src="./assets/logo.png" alt="Astrocycles logo" onerror="this.style.display='none'">
-        <div>
-          <div class="name">Astrocycles</div>
-          <div class="kicker">Moss &amp; Candle Studios</div>
-        </div>
+  <!-- Top bar -->
+  <header>
+    <a class="brand" href="#" aria-label="Astrocycles Home">
+      <!-- TODO: replace with your logo; example: /assets/logo.png -->
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='50%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23a78bfa'/%3E%3Cstop offset='100%25' stop-color='%230a0716'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' rx='12' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='13' fill='none' stroke='%23e9e7ff' stroke-width='3'/%3E%3Ccircle cx='43' cy='25' r='3' fill='%23e9e7ff'/%3E%3C/svg%3E" alt="">
+      <span>Astrocycles</span>
+    </a>
+    <!-- Closed test CTA (mailto) -->
+    <a class="cta" href="mailto:Astrocycles137@outlook.com?subject=Early%20Access%20Request&amp;body=Hi%20Astrocycles%2C%0A%0AI%27d%20love%20early%20access.%20Device%3A%20iOS%2FAndroid%2C%20Country%3A%20_____%2C%20Why%3A%20_____%0A%0AThanks!">
+      ✨ Get early access
+    </a>
+
+    <!-- When live, swap to store badges:
+    <a class="cta" href="APP_STORE_URL"> App Store</a>
+    <a class="cta" href="PLAY_URL">▶ Google Play</a>
+    -->
+  </header>
+
+  <!-- Content -->
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <h1 class="title">Your cosmic rhythm,<br/> beautifully organized</h1>
+      <p class="tag">
+        Astrocycles brings everything astrology into one calm place—moon phases & cycles, retrogrades, and compatibility—personalized to your natal chart.
+        No more hopping across websites.
+      </p>
+      <div class="pills" aria-hidden="true">
+        <span class="pill">Moon phases & cycles</span>
+        <span class="pill">Retrograde tracking</span>
+        <span class="pill">Compatibility insights</span>
+        <span class="pill">Natal-based personalization</span>
+        <span class="pill">Free • No login wall</span>
       </div>
-      <span class="chip">Closed testing</span>
-    </header>
-
-    <!-- hero -->
-    <section class="hero" id="home">
       <div>
-        <h1 class="title">Track your cosmic rhythm</h1>
-        <p class="subtitle">
-          A dark, esoteric home for astrology lovers and the astro-curious.  
-          Follow <strong>moon phases</strong>, <strong>retrogrades</strong>, and <strong>compatibility</strong> —
-          all personalized from your natal data using a local ephemeris. No social logins. Free to use.
-        </p>
-
-        <div class="cta-row">
-          <a class="btn" href="mailto:Astrocycles137@outlook.com?subject=Early%20Access%20Request&body=Hi%20Tom%2C%0A%0AI%27d%20love%20early%20access%20to%20Astrocycles.%20Here%27s%20my%20device%20(OS%2Fversion)%20and%20email%20to%20invite%3A%0A%0A-%20Thanks!" aria-label="Request early access by email">
-            ✨ Get early access
-          </a>
-          <a class="btn ghost" href="https://astrocycles.uk/privacy" target="_blank" rel="noopener">Privacy Policy</a>
-        </div>
-
-        <!-- Optional QR: uncomment when you have a QR image -->
-        <!--
-        <div style="margin-top:14px; display:flex; align-items:center; gap:12px; opacity:.9">
-          <img src="./assets/qr.png" width="84" height="84" alt="Scan to download">
-          <div class="kicker">Scan to download</div>
-        </div>
-        -->
+        <a class="cta" href="mailto:Astrocycles137@outlook.com?subject=Early%20Access%20Request&amp;body=Hi%20Astrocycles%2C%0A%0AI%27d%20love%20early%20access.%20Device%3A%20iOS%2FAndroid%2C%20Country%3A%20_____%2C%20Why%3A%20_____%0A%0AThanks!">✨ Request early access</a>
       </div>
-
-      <!-- phones / screenshots -->
-      <div class="shots" aria-label="App screenshots">
-        <div class="rail">
-          <!-- replace filenames with your real images; add/remove as needed -->
-          <img src="./assets/screen-1.jpg" alt="Today view — lunar phase and guidance" loading="lazy">
-          <img src="./assets/screen-2.jpg" alt="Calendar of moon phases and signs" loading="lazy">
-          <img src="./assets/screen-3.jpg" alt="Natal chart inputs and insights" loading="lazy">
-          <img src="./assets/screen-4.jpg" alt="Journal to track patterns" loading="lazy">
-          <img src="./assets/screen-5.jpg" alt="Retrogrades with heads-ups" loading="lazy">
-        </div>
-      </div>
+      <p class="subnote">Currently in closed testing.</p>
     </section>
 
-    <!-- features -->
-    <section id="features" aria-labelledby="features-h">
-      <h2 id="features-h" class="sr-only">Features</h2>
-      <div class="grid">
+    <!-- FEATURES -->
+    <section class="section">
+      <div class="grid cols-3">
         <article class="card">
-          <h3>Moon cycles, clearly</h3>
-          <p class="muted">Track phases and sign transitions at a glance. See how the current sky reflects your energy.</p>
+          <div class="feature-icon">☽</div>
+          <h3>Moon Phase & Cycle Tracking</h3>
+          <p>See where the Moon is now and what’s next. Understand how phases and sign changes can influence mood, energy, and focus.</p>
         </article>
         <article class="card">
-          <h3>Personalized by your natal data</h3>
-          <p class="muted">Astrocycles uses an ephemeris to calculate live planetary positions and relates them to <em>your</em> birth details — privately on your device.</p>
+          <div class="feature-icon">℞</div>
+          <h3>Retrogrades, Simplified</h3>
+          <p>Clear timelines and guidance for Mercury (and beyond). Plan around the tricky bits without doomscrolling.</p>
         </article>
         <article class="card">
-          <h3>Retrogrades &amp; reminders</h3>
-          <p class="muted">Know when Mercury and friends switch gears, with optional heads-ups for beginnings, endings, and returns.</p>
-        </article>
-        <article class="card">
-          <h3>Compatibility &amp; journaling</h3>
-          <p class="muted">Run quick compatibility by natal inputs and keep notes to spot repeating patterns over time.</p>
-        </article>
-        <article class="card">
-          <h3>Free. No social login.</h3>
-          <p class="muted">Jump right in, enter your details, and get personalized guidance. No paywalls, no accounts.</p>
-        </article>
-        <article class="card">
-          <h3>Future rituals</h3>
-          <p class="muted">Daily rituals and practices are on the roadmap. Your feedback helps shape where we go next.</p>
+          <div class="feature-icon">♡</div>
+          <h3>Compatibility & Natal Context</h3>
+          <p>Input your birth details once. Astrocycles personalizes insights—so compatibility and daily guidance relate to <em>you</em>.</p>
         </article>
       </div>
     </section>
 
-    <!-- social proof / note -->
-    <section id="love">
+    <!-- WHAT MAKES IT DIFFERENT -->
+    <section class="section grid cols-2">
       <div class="card">
-        <h3>What people say</h3>
-        <p class="muted">“I really like it — 5★ from me.” <span class="kicker">— early tester</span></p>
-      </div>
-    </section>
-
-    <!-- about -->
-    <section id="about" class="about">
-      <div class="card">
-        <h3>Built by Tom at Moss &amp; Candle Studios</h3>
-        <p class="muted">
-          After a personal spiritual awakening, Tom noticed his mood, energy, and even day-to-day mishaps seemed to sync
-          with the moon and retrogrades — especially that classic “why am I dropping everything?” stretch during Mercury
-          retrograde. Astrocycles grew from that curiosity into a practical way to watch the sky and your life in tandem.
-        </p>
+        <h3>Why Astrocycles feels personal</h3>
+        <p>Under the hood, Astrocycles uses an ephemeris database to calculate live planetary positions and relate them to your saved natal data. That means your feed, alerts, and insights reflect your chart—not generic horoscopes.</p>
+        <ul>
+          <li>Accurate, live positional data</li>
+          <li>Personalized to your natal inputs</li>
+          <li>One place for “all things astrology”</li>
+        </ul>
       </div>
       <div class="card">
-        <h3>Who is it for?</h3>
-        <p class="muted">Beginners, the astrology-curious, daily practitioners, and journalers. If you want everything in one place without bouncing between sites, this is for you.</p>
-        <div class="cta-row" style="margin-top:8px">
-          <a class="btn" href="mailto:Astrocycles137@outlook.com?subject=Early%20Access%20Request">Request early access</a>
-          <a class="btn ghost" href="#features">Explore features</a>
+        <h3>Free, with an open door</h3>
+        <p>Astrocycles is completely free right now—no paywall, no social login. Load the app, add your details, and start receiving personalized guidance.</p>
+        <p class="subnote">Have ideas? We welcome feedback to shape the roadmap.</p>
+      </div>
+    </section>
+
+    <!-- SCREENS -->
+    <section class="section card">
+      <h3 style="margin-top:0">A peek at the app</h3>
+      <p class="subnote">Here’s a taste of the dark, purpley, witchy aesthetic.</p>
+      <div class="screens" aria-label="App screenshots">
+        <!-- TODO: replace placeholders with your real images -->
+        <!-- Example: <div class="shot"><img src="/assets/screen-01.jpg" alt="Today view: moon phase and transit timeline"></div> -->
+        <div class="shot"><span>Screenshot 1</span></div>
+        <div class="shot"><span>Screenshot 2</span></div>
+        <div class="shot"><span>Screenshot 3</span></div>
+      </div>
+    </section>
+
+    <!-- QUOTE / SOCIAL PROOF -->
+    <section class="section">
+      <div class="quote">
+        <div style="font-size:1.5rem; line-height:1">★</div>
+        <div>
+          <b>“Absolutely loving it—clean, calm, and actually helpful.”</b>
+          <div><small>— Early tester</small></div>
         </div>
       </div>
     </section>
 
-    <!-- footer -->
-    <footer class="footer">
-      <div>© <span id="year"></span> Astrocycles • <span class="kicker">Moss &amp; Candle Studios</span></div>
-      <div class="links">
-        <a href="mailto:Astrocycles137@outlook.com">Support</a>
-        <a href="https://astrocycles.uk/privacy" target="_blank" rel="noopener">Privacy</a>
-        <a href="#about">About</a>
+    <!-- ROADMAP -->
+    <section class="section grid cols-2">
+      <div class="card">
+        <h3>What’s next</h3>
+        <ul>
+          <li>Daily rituals & practices you can actually stick with</li>
+          <li>More compatibility & partner insights</li>
+          <li>Ongoing improvements based on community feedback</li>
+        </ul>
       </div>
-    </footer>
-  </div>
+      <div class="card">
+        <h3>Founder’s note</h3>
+        <p>Hi, I’m Tom. After a spiritual awakening, I kept noticing my mood, energy, and even little life glitches seemed to sync with lunar phases and retrogrades (hello, broken cups during Mercury ℞). Astrocycles grew from that curiosity—so your day can meet the sky with a little more intention.</p>
+      </div>
+    </section>
+
+    <!-- SECONDARY CTA -->
+    <section class="section" style="text-align:center">
+      <a class="cta" href="mailto:Astrocycles137@outlook.com?subject=Early%20Access%20Request&amp;body=Hi%20Astrocycles%2C%0A%0AI%27d%20love%20early%20access.%20Device%3A%20iOS%2FAndroid%2C%20Country%3A%20_____%2C%20Why%3A%20_____%0A%0AThanks!">✨ Get early access</a>
+      <p class="subnote">QR code and store links will appear here at launch.</p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-wrap">
+      <div class="foot-row">
+        <div class="links" role="navigation" aria-label="Footer">
+          <a href="https://astrocycles.uk/privacy">Privacy</a>
+          &nbsp;·&nbsp;
+          <a href="mailto:Astrocycles137@outlook.com">Contact</a>
+        </div>
+        <div class="links">
+          <span>Developer: Moss &amp; Candle Studios</span>
+        </div>
+      </div>
+      <div class="foot-row" style="opacity:.7; font-size:.9rem">
+        <div>© <span id="year"></span> Astrocycles. All rights reserved.</div>
+        <div>Made with ✨ in the witchy hours.</div>
+      </div>
+    </div>
+  </footer>
 
   <script>
     // Year
@@ -295,9 +360,9 @@
       for(let i=0;i<count;i++){
         const s = document.createElement('div');
         s.className = 'star';
-        const size = Math.random() * 1.6 + 0.8;
-        const x = Math.random() * 100;
-        const y = Math.random() * 100;
+        const size = Math.random() * 1.6 + 0.8; // 0.8 - 2.4px
+        const x = Math.random() * 100; // vw
+        const y = Math.random() * 100; // vh
         const delay = (Math.random() * 6).toFixed(2) + 's';
         const duration = (3 + Math.random() * 5).toFixed(2) + 's';
         s.style.width = size + 'px';
