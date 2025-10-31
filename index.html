@@ -70,7 +70,7 @@
     .vignette{ position:fixed; inset:-10px; pointer-events:none; box-shadow: inset 0 0 160px rgba(0,0,0,.75); z-index:-1; }
 
     /* Layout */
-    .wrap{ max-width:1120px; margin:0 auto; padding: calc(10vh + 24px) 20px 72px; }
+   .wrap{ max-width:1120px; margin:0 auto; padding: clamp(24px, 5vh, 56px) 20px 64px; }
     header{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 20px; max-width:1120px; margin:0 auto; }
     .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink); }
     .brand img{ width:36px; height:36px; border-radius:8px; object-fit:cover; filter: drop-shadow(0 0 8px rgba(167,139,250,.35)); }
