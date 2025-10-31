@@ -97,16 +97,31 @@
     .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink); }
     .brand img{ width:36px; height:36px; border-radius:8px; object-fit:cover; filter: drop-shadow(0 0 8px rgba(167,139,250,.35)); }
     .brand span{ font-weight:800; letter-spacing:.06em }
+
+    /* Primary CTA (Play) */
     .cta{
-      appearance:none; border:1px solid var(--border); color:#fff; background:linear-gradient(180deg, rgba(167,139,250,.22), rgba(167,139,250,.1));
-      padding:.75rem 1rem; border-radius:12px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
-      box-shadow: 0 0 0 0 rgba(167,139,250,.0);
+      appearance:none; border:1px solid var(--border); color:#fff;
+      background: radial-gradient(120% 200% at 30% -20%, rgba(167,139,250,.35), rgba(167,139,250,.08)),
+                  linear-gradient(180deg, rgba(167,139,250,.18), rgba(167,139,250,.08));
+      padding:.75rem 1rem; border-radius:12px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:.6rem;
+      box-shadow: 0 0 0 0 rgba(167,139,250,.0); transition: box-shadow .2s ease, transform .08s ease, border-color .2s ease;
+      position: relative; overflow: hidden;
     }
-    .cta:hover{ box-shadow:0 0 0 4px var(--ring); }
+    .cta::after{
+      content:""; position:absolute; inset:-2px; border-radius:12px; pointer-events:none;
+      background: radial-gradient(600px 120px at 0% 0%, rgba(167,139,250,.25), transparent 55%);
+      opacity:.7; mix-blend-mode: screen; transition: transform .3s ease;
+      transform: translateX(-30%);
+    }
+    .cta:hover{ box-shadow:0 0 0 4px var(--ring); border-color: rgba(167,139,250,.5); }
+    .cta:hover::after{ transform: translateX(0%); }
     .cta:active{ transform: translateY(1px); }
 
+    /* Small Play icon (inline SVG) */
+    .play-icon{ width:18px; height:18px; display:inline-block; vertical-align:middle }
+
     /* Hero */
-    .hero{ text-align:center; margin-bottom: 56px; }
+    .hero{ text-align:center; margin-bottom: 28px; }
     .title{
       font-family: "Cinzel Decorative", serif;
       font-weight:700; letter-spacing: .08em;
@@ -124,7 +139,6 @@
       border:1px solid var(--border); border-radius:999px; padding:.5rem .8rem; font-size:.9rem; opacity:.9;
       background: rgba(20,18,38,.35);
     }
-    .subnote{ font-size:.9rem; opacity:.7; }
 
     /* Cards/sections */
     .section{ margin: 56px 0; }
@@ -158,6 +172,62 @@
     .quote b{ color:#fff }
     .quote small{ opacity:.6 }
 
+    /* Store / QR (revamp) */
+    .store-wrap{
+      display:grid; gap:20px; align-items:center;
+      grid-template-columns: 1fr; justify-items:center; text-align:center;
+      margin-top: 14px;
+    }
+    @media(min-width: 900px){
+      .store-wrap{ grid-template-columns: 1fr 1.1fr; text-align:left; justify-items:stretch; }
+    }
+    .qr-card{
+      position:relative; display:grid; place-items:center; padding:26px; border-radius:18px;
+      background: linear-gradient(180deg, rgba(167,139,250,.08), rgba(167,139,250,.02));
+      border:1px solid var(--border);
+      box-shadow: 0 10px 40px rgba(0,0,0,.28), inset 0 0 40px rgba(167,139,250,.08);
+      overflow:hidden;
+    }
+    .qr-aura{
+      position:absolute; inset:-40%; pointer-events:none;
+      background:
+        radial-gradient(40% 40% at 50% 40%, rgba(167,139,250,.24), transparent 60%),
+        radial-gradient(30% 30% at 40% 60%, rgba(120,200,255,.18), transparent 70%);
+      filter: blur(30px); opacity:.6; mix-blend-mode: screen;
+      animation: breathe 9s ease-in-out infinite;
+    }
+    @keyframes breathe{
+      0%,100%{ transform:scale(1) translateY(0); opacity:.6; }
+      50%{ transform:scale(1.06) translateY(2%); opacity:.85; }
+    }
+    .qr{
+      width:min(60vw, 240px);
+      aspect-ratio:1 / 1;
+      background:#fff;
+      border-radius:14px;
+      padding:14px;
+      border:1px solid var(--border);
+      image-rendering: pixelated; /* keeps QR crisp */
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      position: relative;
+      z-index:1;
+    }
+    .qr-caption{ margin-top:10px; opacity:.8; font-size:.95rem; }
+
+    .store-copy .title-sub{ font-weight:800; letter-spacing:.06em; opacity:.9; }
+    .btn-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top:14px; }
+    .btn-play{
+      display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.05rem; border-radius:14px;
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(167,139,250,.22), rgba(167,139,250,.08));
+      text-decoration:none; color:#fff; font-weight:800; letter-spacing:.02em;
+      box-shadow: 0 10px 26px rgba(0,0,0,.25);
+      transition: transform .08s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .btn-play:hover{ box-shadow: 0 0 0 4px var(--ring), 0 12px 28px rgba(0,0,0,.35); border-color: rgba(167,139,250,.48); }
+    .btn-play:active{ transform: translateY(1px); }
+    .store-note{ font-size:.95rem; opacity:.8; margin-top:6px; }
+
     /* Footer */
     footer{
       border-top:1px solid rgba(255,255,255,.08);
@@ -172,24 +242,6 @@
       color: var(--muted); text-decoration:none; border-bottom:1px dashed rgba(167,139,250,.35);
     }
     .links a:hover{ color:#fff; border-bottom-color: var(--accent); }
-
-    /* Store / QR */
-    .store{
-      display:flex; flex-direction:column; align-items:center; gap:14px;
-    }
-    .qr{
-      width:min(60vw, 220px);
-      aspect-ratio:1 / 1;
-      background:#fff;
-      border-radius:12px;
-      padding:12px;
-      border:1px solid var(--border);
-      image-rendering: pixelated; /* keeps QR crisp */
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-    }
-    .store-note{
-      font-size:.95rem; opacity:.8;
-    }
 
     /* A11y focus */
     a:focus, button:focus { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
@@ -212,9 +264,36 @@
       <img src="./assets/icon-nobg.png" alt="Astrocycles logo">
       <span>Astrocycles</span>
     </a>
-    <!-- Closed test CTA (mailto) -->
-    <a class="cta" href="mailto:Astrocycles137@outlook.com?subject=Early%20Access%20Request&amp;body=Hi%20Astrocycles%2C%0A%0AI%27d%20love%20early%20access.%20Device%3A%20iOS%2FAndroid%2C%20Country%3A%20_____%2C%20Why%3A%20_____%0A%0AThanks!">
-      ✨ Get early access
+
+    <!-- Replaced: Early access -> Play button -->
+    <a
+      class="cta"
+      href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles"
+      target="_blank" rel="noopener"
+      aria-label="Download Astrocycles on Google Play"
+    >
+      <!-- Inline Google Play icon (SVG, no external asset) -->
+      <svg class="play-icon" viewBox="0 0 512 512" aria-hidden="true">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1">
+            <stop offset="0" stop-color="#00A0FF"/><stop offset="1" stop-color="#00E3FF"/>
+          </linearGradient>
+          <linearGradient id="g2" x1="0" x2="1">
+            <stop offset="0" stop-color="#FFE000"/><stop offset="1" stop-color="#FF9A00"/>
+          </linearGradient>
+          <linearGradient id="g3" x1="0" x2="1">
+            <stop offset="0" stop-color="#FF3A44"/><stop offset="1" stop-color="#C31162"/>
+          </linearGradient>
+          <linearGradient id="g4" x1="0" x2="1">
+            <stop offset="0" stop-color="#32A071"/><stop offset="1" stop-color="#00F076"/>
+          </linearGradient>
+        </defs>
+        <path d="M48 72c0-15 17-24 30-16l239 147-63 63L48 88V72z" fill="url(#g1)"/>
+        <path d="M48 424c0 15 17 24 30 16l239-147-63-63L48 408v16z" fill="url(#g4)"/>
+        <path d="M317 203l77-47c14-8 30 2 30 18v163c0 16-16 26-30 18l-77-47-63-52 63-53z" fill="url(#g2)"/>
+        <path d="M317 203l-63 53-206-168c0-1 0-1 0-1 0-15 17-24 30-16l239 147z" fill="url(#g3)" opacity=".9"/>
+      </svg>
+      Download on Google Play
     </a>
   </header>
 
@@ -234,10 +313,64 @@
         <span class="pill">Natal-based personalization</span>
         <span class="pill">Free • No login wall</span>
       </div>
-      <div>
-        <a class="cta" href="mailto:Astrocycles137@outlook.com?subject=Early%20Access%20Request&amp;body=Hi%20Astrocycles%2C%0A%0AI%27d%20love%20early%20access.%20Device%3A%20iOS%2FAndroid%2C%20Country%3A%20_____%2C%20Why%3A%20_____%0A%0AThanks!">✨ Request early access</a>
+
+      <!-- New: Beautiful store block under hero -->
+      <div class="store-wrap section">
+        <!-- QR side -->
+        <div class="qr-card">
+          <div class="qr-aura" aria-hidden="true"></div>
+          <a href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener" aria-label="Open Astrocycles on Google Play">
+            <img
+              class="qr"
+              src="./assets/astrocyclesQR.png"
+              alt="Scan to open Astrocycles on Google Play"
+              loading="eager"
+              decoding="async"
+            >
+          </a>
+          <div class="qr-caption">Scan with your camera to install</div>
+        </div>
+
+        <!-- Copy + buttons side -->
+        <div class="store-copy">
+          <div class="title-sub">Available on Android</div>
+          <h2 class="title" style="font-size:clamp(1.6rem,3.2vw,2.2rem); margin:.25rem 0 0">Get Astrocycles on Google Play</h2>
+          <p style="opacity:.86; max-width:46ch; margin:.6rem 0 0">
+            Tap the button below or scan the QR code to open the store page on your phone.
+          </p>
+          <div class="btn-row">
+            <a
+              class="btn-play"
+              href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles"
+              target="_blank" rel="noopener"
+              aria-label="Download Astrocycles on Google Play"
+            >
+              <svg class="play-icon" viewBox="0 0 512 512" aria-hidden="true">
+                <defs>
+                  <linearGradient id="gp1" x1="0" x2="1">
+                    <stop offset="0" stop-color="#00A0FF"/><stop offset="1" stop-color="#00E3FF"/>
+                  </linearGradient>
+                  <linearGradient id="gp2" x1="0" x2="1">
+                    <stop offset="0" stop-color="#FFE000"/><stop offset="1" stop-color="#FF9A00"/>
+                  </linearGradient>
+                  <linearGradient id="gp3" x1="0" x2="1">
+                    <stop offset="0" stop-color="#FF3A44"/><stop offset="1" stop-color="#C31162"/>
+                  </linearGradient>
+                  <linearGradient id="gp4" x1="0" x2="1">
+                    <stop offset="0" stop-color="#32A071"/><stop offset="1" stop-color="#00F076"/>
+                  </linearGradient>
+                </defs>
+                <path d="M48 72c0-15 17-24 30-16l239 147-63 63L48 88V72z" fill="url(#gp1)"/>
+                <path d="M48 424c0 15 17 24 30 16l239-147-63-63L48 408v16z" fill="url(#gp4)"/>
+                <path d="M317 203l77-47c14-8 30 2 30 18v163c0 16-16 26-30 18l-77-47-63-52 63-53z" fill="url(#gp2)"/>
+                <path d="M317 203l-63 53-206-168c0-1 0-1 0-1 0-15 17-24 30-16l239 147z" fill="url(#gp3)" opacity=".9"/>
+              </svg>
+              Download on Google Play
+            </a>
+          </div>
+          <div class="store-note">Having trouble on desktop? Use your phone’s camera to scan the QR.</div>
+        </div>
       </div>
-      <p class="subnote">Currently in closed testing.</p>
     </section>
 
     <!-- FEATURES -->
@@ -305,33 +438,6 @@
         <p>Hi, I’m Tom. After a spiritual awakening, I kept noticing my mood, energy, and even little life glitches seemed to sync with lunar phases and retrogrades (hello, broken cups during Mercury ℞). Astrocycles grew from that curiosity—so your day can meet the sky with a little more intention.</p>
       </div>
     </section>
-
-    <!-- STORE QR + BUTTON (updated) -->
-    <section class="section" style="text-align:center">
-      <div class="store">
-        <a href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener" aria-label="Open Astrocycles on Google Play">
-          <img
-            class="qr"
-            src="./assets/astrocyclesQR.png"
-            alt="Scan to open Astrocycles on Google Play"
-            loading="eager"
-            decoding="async"
-          >
-        </a>
-
-        <a
-          class="cta"
-          href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles"
-          target="_blank"
-          rel="noopener"
-          aria-label="Download Astrocycles on Google Play"
-        >
-          ⬇️ Download on Google Play
-        </a>
-
-        <p class="store-note">Scan the QR with your phone camera, or tap the button above.</p>
-      </div>
-    </section>
   </main>
 
   <!-- FOOTER -->
@@ -344,12 +450,12 @@
           <a href="mailto:Astrocycles137@outlook.com">Contact</a>
         </div>
         <div class="links">
-          <span>Developer: OneThreeSeven </span>
+          <span>Developer: Moss &amp; Candle Studios</span>
         </div>
       </div>
       <div class="foot-row" style="opacity:.7; font-size:.9rem">
         <div>© <span id="year"></span> Astrocycles. All rights reserved.</div>
-        <div>Made with ✨ during the witching hour.</div>
+        <div>Made with ✨ in the witchy hours.</div>
       </div>
     </div>
   </footer>
