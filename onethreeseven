@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OneThreeSeven — Independent Developer of AstroCycles</title>
+  <meta name="description" content="OneThreeSeven is an independent developer studio focused on mindful, astronomy-inspired mobile experiences — including the AstroCycles app on Google Play.">
+  <meta name="theme-color" content="#0a0716">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#06060c;
+      --ink:#e9e7ff;
+      --muted:#bdb9ff;
+      --accent:#a78bfa;
+      --border: rgba(167,139,250,.25);
+      --card: rgba(20,18,38,.55);
+      --ring: rgba(167,139,250,.6);
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background: radial-gradient(1200px 800px at 70% 20%, #0e0d18 0%, #070713 45%, #05050c 80%), var(--bg);
+      color:var(--ink);
+      font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .wrap{ max-width:900px; margin:0 auto; padding: clamp(24px,5vh,56px) 20px 64px; }
+
+    header{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 0; }
+    .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink); }
+    .brand img{ width:44px; height:44px; border-radius:10px; object-fit:cover; filter: drop-shadow(0 0 8px rgba(167,139,250,.35)); }
+    .brand span{ font-weight:800; font-size:1.3rem; letter-spacing:.05em; }
+
+    h1{ font-family:"Cinzel Decorative", serif; font-size:clamp(2rem,6vw,3.5rem); margin:.5rem 0; text-shadow:0 0 10px rgba(167,139,250,.3); }
+    h2{ margin-top:2.2rem; font-size:1.4rem; letter-spacing:.02em; }
+
+    p{ line-height:1.6; max-width:65ch; opacity:.88; }
+    ul{ opacity:.88; line-height:1.6; }
+    a{ color:var(--accent); text-decoration:none; border-bottom:1px dashed rgba(167,139,250,.35); }
+    a:hover{ border-bottom-color: var(--accent); }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:24px;
+      margin-top:24px;
+      backdrop-filter:blur(6px);
+      box-shadow:0 10px 40px rgba(0,0,0,.25);
+    }
+
+    footer{ border-top:1px solid rgba(255,255,255,.08); margin-top:60px; padding:20px 0; font-size:.9rem; opacity:.75; text-align:center; }
+
+    .cta{
+      display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.1rem;
+      border:1px solid var(--border); border-radius:14px;
+      background:linear-gradient(180deg, rgba(167,139,250,.22), rgba(167,139,250,.08));
+      text-decoration:none; color:#fff; font-weight:700;
+      box-shadow:0 10px 26px rgba(0,0,0,.25);
+      transition:transform .08s ease, box-shadow .2s ease, border-color .2s ease;
+      margin-top:1.2rem;
+    }
+    .cta:hover{ box-shadow:0 0 0 4px var(--ring), 0 12px 28px rgba(0,0,0,.35); border-color: rgba(167,139,250,.48); }
+    .cta:active{ transform: translateY(1px); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <a class="brand" href="https://astrocycles.uk">
+        <img src="../assets/icon-nobg.png" alt="AstroCycles icon">
+        <span>OneThreeSeven</span>
+      </a>
+    </header>
+
+    <section>
+      <h1>Independent Developer Studio</h1>
+      <p>
+        <b>OneThreeSeven</b> is a small, independent developer identity focused on creating atmospheric, mindful digital experiences that bridge astronomy, design, and daily life.
+      </p>
+      <p>
+        Based in the United Kingdom, OneThreeSeven is responsible for the <a href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener">AstroCycles</a> mobile app — a free astrology and moon-phase companion that operates privately on-device.
+      </p>
+
+      <div class="card">
+        <h2>About AstroCycles</h2>
+        <p>
+          AstroCycles offers natal-based guidance, lunar and planetary tracking, tarot features, and compatibility insights — all calculated locally for privacy. The app is designed and maintained by OneThreeSeven using modern Android and Expo technologies.
+        </p>
+        <a class="cta" href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener">
+          View AstroCycles on Google Play
+        </a>
+      </div>
+
+      <div class="card">
+        <h2>Contact</h2>
+        <p>
+          For general inquiries, feedback, or collaboration requests, please reach out via email:
+        </p>
+        <p>
+          <a href="mailto:Astrocycles137@outlook.com">Astrocycles137@outlook.com</a>
+        </p>
+        <p>
+          You can also learn more about the app on its main website:
+          <br><a href="https://astrocycles.uk">https://astrocycles.uk</a>
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Privacy & Transparency</h2>
+        <p>
+          OneThreeSeven values privacy and transparency. All AstroCycles computations are performed locally on the user’s device. No personal or location data is transmitted to servers. Anonymous usage analytics and ad services (via Google Mobile Ads) are the only external integrations.
+        </p>
+        <p>
+          Full privacy policy:
+          <br><a href="https://astrocycles.uk/privacy">astrocycles.uk/privacy</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> OneThreeSeven · All rights reserved · United Kingdom
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
