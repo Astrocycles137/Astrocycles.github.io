@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AstroCycles — Personal Astrology, Moon Phases & Tarot</title>
-  <meta name="description" content="AstroCycles blends an on-device celestial engine with natal-aligned guidance: live moon phases, transits & notifications, daily tarot, compatibility, and dual calendars — private & offline." />
+  <meta name="description" content="AstroCycles runs an on-device celestial engine aligned to your natal data. Private. Offline. Free on Google Play." />
   <meta name="theme-color" content="#0a0716" />
 
   <!-- OG / SEO -->
@@ -56,72 +56,56 @@
     .vignette{position:fixed; inset:-10px; pointer-events:none; box-shadow:inset 0 0 180px rgba(0,0,0,.75); z-index:-1}
 
     /* Grid & rhythm */
-    .wrap{max-width:1120px; margin:0 auto; padding: clamp(16px, 3vh, 24px) 20px 72px}
-    .section{margin: clamp(40px, 8vh, 84px) 0}
-    .grid{display:grid; gap:18px}
-    @media(min-width: 920px){ .grid.cols-2{ grid-template-columns: 1.1fr 1fr } }
+    .wrap{max-width:980px; margin:0 auto; padding: clamp(12px, 2vh, 20px) 18px 60px}
+    .section{margin: clamp(24px, 6vh, 56px) 0}
+    .grid{display:grid; gap:16px}
+    @media(min-width: 920px){ .grid.cols-2{ grid-template-columns: 1.05fr .95fr } }
     @media(min-width: 920px){ .grid.cols-3{ grid-template-columns: repeat(3,1fr) } }
 
-    /* Header */
+    /* Header (kept minimal) */
     header{position:sticky; top:0; backdrop-filter:saturate(140%) blur(8px); background: linear-gradient(180deg, rgba(14,12,28,.85), rgba(14,12,28,.55)); border-bottom:1px solid rgba(167,139,250,.12); z-index:50}
-    .topbar{max-width:1120px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:10px 20px}
+    .topbar{max-width:980px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:8px 18px}
     .brand{display:flex; align-items:center; gap:10px; text-decoration:none}
-    .brand img{width:32px; height:32px; border-radius:8px; filter:drop-shadow(0 0 8px rgba(167,139,250,.35))}
+    .brand img{width:28px; height:28px; border-radius:8px; filter:drop-shadow(0 0 8px rgba(167,139,250,.35))}
     .brand span{font-weight:800; letter-spacing:.06em}
 
-    .btn{appearance:none; border:1px solid var(--border); border-radius:12px; padding:.75rem 1rem; font-weight:800; letter-spacing:.02em; text-decoration:none; display:inline-flex; align-items:center; gap:.6rem; background: linear-gradient(180deg, rgba(167,139,250,.25), rgba(167,139,250,.08)); box-shadow: var(--shadow); transition: transform .08s ease, box-shadow .2s ease, border-color .2s ease}
+    .btn{appearance:none; border:1px solid var(--border); border-radius:12px; padding:.6rem .9rem; font-weight:800; letter-spacing:.02em; text-decoration:none; display:inline-flex; align-items:center; gap:.6rem; background: linear-gradient(180deg, rgba(167,139,250,.25), rgba(167,139,250,.08)); box-shadow: var(--shadow); transition: transform .08s ease, box-shadow .2s ease, border-color .2s ease}
     .btn:hover{ box-shadow:0 0 0 4px var(--ring), 0 14px 30px rgba(0,0,0,.35); border-color: rgba(167,139,250,.48)}
     .btn:active{ transform: translateY(1px)}
     .btn--ghost{ background: linear-gradient(180deg, rgba(167,139,250,.12), rgba(167,139,250,.05)); }
 
     /* Hero */
-    .hero{ display:grid; gap:22px; align-items:center; }
-    @media(min-width: 920px){ .hero{ grid-template-columns: 1.05fr .95fr; gap:28px } }
-    .hero__eyebrow{font-weight:800; letter-spacing:.08em; color:var(--muted)}
-    .title{font-family:"Cinzel Decorative", serif; font-weight:700; letter-spacing:.06em; margin:.1rem 0 .6rem; font-size: clamp(2.2rem, 6vw, 4.4rem); text-shadow: 0 0 10px rgba(138,132,255,.22), 0 0 30px rgba(120,200,255,.12)}
-    .subtitle{opacity:.9; max-width: 64ch}
-    .pills{ display:flex; flex-wrap:wrap; gap:10px; margin:.4rem 0 0 }
-    .pill{border:1px solid var(--border); border-radius:999px; padding:.5rem .8rem; font-size:.95rem; background: rgba(22,20,40,.4)}
+    .hero{ display:grid; gap:18px; align-items:center; }
+    @media(min-width: 920px){ .hero{ grid-template-columns: 1.05fr .95fr; gap:24px } }
+    .eyebrow{font-weight:800; letter-spacing:.08em; color:var(--muted)}
+    .title{font-family:"Cinzel Decorative", serif; font-weight:700; letter-spacing:.06em; margin:.1rem 0 .4rem; font-size: clamp(1.6rem, 4.2vw, 2.6rem); text-shadow: 0 0 10px rgba(138,132,255,.18), 0 0 30px rgba(120,200,255,.10)}
+    .subtitle{opacity:.9; max-width: 60ch}
+    .pills{ display:flex; flex-wrap:wrap; gap:8px; margin:.3rem 0 0 }
+    .pill{border:1px solid var(--border); border-radius:999px; padding:.45rem .75rem; font-size:.92rem; background: rgba(22,20,40,.4)}
 
-    .hero__panel{ background: var(--card-strong); border:1px solid var(--border); border-radius:18px; padding:18px; box-shadow: var(--shadow); position:relative; overflow:hidden }
-    .hero__panel .aura{ position:absolute; inset:-35%; background:
+    .panel{ background: var(--card-strong); border:1px solid var(--border); border-radius:16px; padding:16px; box-shadow: var(--shadow); position:relative; overflow:hidden }
+    .panel .aura{ position:absolute; inset:-35%; background:
         radial-gradient(45% 40% at 55% 30%, rgba(167,139,250,.35), transparent 60%),
         radial-gradient(35% 40% at 30% 60%, rgba(120,200,255,.25), transparent 70%);
       mix-blend-mode:screen; filter: blur(30px); opacity:.6 }
-    .qr{ width:min(60vw, 230px); aspect-ratio:1/1; background:#fff; border-radius:14px; padding:14px; border:1px solid var(--border); image-rendering:pixelated; position:relative; z-index:1 }
-    .qr-caption{ margin-top:10px; opacity:.82 }
-    .hero__actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:14px }
+    .qr{ width:min(56vw, 210px); aspect-ratio:1/1; background:#fff; border-radius:14px; padding:14px; border:1px solid var(--border); image-rendering:pixelated; position:relative; z-index:1 }
+    .qr-caption{ margin-top:8px; opacity:.82; font-size:.95rem }
+    .hero__actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px }
 
-    /* Feature cards */
-    .card{ background: var(--card); border:1px solid var(--border); border-radius:16px; padding:20px; backdrop-filter: blur(6px); box-shadow: var(--shadow) }
-    .card h3{ margin:.2rem 0 .35rem; font-size:1.15rem }
-    .card p{ margin:.2rem 0 0; opacity:.9 }
-    .ficon{ width:36px; height:36px; display:grid; place-items:center; border-radius:10px; background: linear-gradient(180deg, rgba(167,139,250,.35), rgba(167,139,250,.12)); border:1px solid var(--border); text-shadow:0 0 12px rgba(167,139,250,.6) }
+    /* Small cards / lists */
+    .card{ background: var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; backdrop-filter: blur(6px); box-shadow: var(--shadow) }
+    .card h3{ margin:.1rem 0 .25rem; font-size:1.05rem }
+    .list{ margin:.2rem 0 0; padding-left: 1rem }
+    .list li{ margin:.25rem 0 }
 
-    /* Differentiators */
-    .list{ margin:.4rem 0 0; padding-left: 1rem }
-    .list li{ margin:.3rem 0 }
-    .subnote{ opacity:.75; font-size:.95rem; margin-top:.35rem }
-
-    /* Quote */
-    .quote{ display:flex; gap:12px; align-items:flex-start; background: var(--card-strong); border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow: var(--shadow) }
-    .quote b{ color:#fff }
-
-    /* Gallery (optional screenshots) */
+    /* Gallery */
     .gallery{ display:grid; grid-auto-flow:column; gap:12px; overflow:auto; padding-bottom:6px }
-    .shot{ min-width:200px; border-radius:14px; border:1px solid var(--border); background: rgba(255,255,255,.02) }
-
-    /* FAQ */
-    details{ background: var(--card); border:1px solid var(--border); border-radius:14px; padding:14px 16px }
-    details + details{ margin-top:10px }
-    details[open]{ background: var(--card-strong) }
-    summary{ cursor:pointer; font-weight:700; letter-spacing:.01em }
-    summary::-webkit-details-marker{ display:none }
+    .shot{ min-width:220px; border-radius:12px; border:1px solid var(--border); background: rgba(255,255,255,.02) }
 
     /* Footer */
     footer{ border-top:1px solid rgba(255,255,255,.08); background: linear-gradient(180deg, rgba(20,18,38,.4), rgba(20,18,38,.15)) }
-    .foot{ max-width:1120px; margin:0 auto; padding:18px 20px; display:grid; gap:10px }
-    .foot-row{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between }
+    .foot{ max-width:980px; margin:0 auto; padding:16px 18px; display:grid; gap:8px }
+    .foot-row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between }
     .links a{ color: var(--muted); text-decoration:none; border-bottom:1px dashed rgba(167,139,250,.35) }
     .links a:hover{ color:#fff; border-bottom-color: var(--accent) }
 
@@ -136,28 +120,16 @@
   <div class="bg" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
 
-  <!-- Header -->
+  <!-- Header (minimal) -->
   <header>
     <div class="topbar">
       <a class="brand" href="#" aria-label="AstroCycles Home">
-        <img src="./assets/icon-nobg.png" alt="AstroCycles logo" width="32" height="32" />
+        <img src="./assets/icon-nobg.png" alt="AstroCycles logo" width="28" height="28" />
         <span>AstroCycles</span>
       </a>
       <nav class="nav" aria-label="Primary">
-        <a class="btn btn--ghost" href="#features">Features</a>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener" aria-label="Download AstroCycles on Google Play">
-          <svg class="play-icon" viewBox="0 0 512 512" width="18" height="18" aria-hidden="true">
-            <defs>
-              <linearGradient id="gp1" x1="0" x2="1"><stop offset="0" stop-color="#00A0FF"/><stop offset="1" stop-color="#00E3FF"/></linearGradient>
-              <linearGradient id="gp2" x1="0" x2="1"><stop offset="0" stop-color="#FFE000"/><stop offset="1" stop-color="#FF9A00"/></linearGradient>
-              <linearGradient id="gp3" x1="0" x2="1"><stop offset="0" stop-color="#FF3A44"/><stop offset="1" stop-color="#C31162"/></linearGradient>
-              <linearGradient id="gp4" x1="0" x2="1"><stop offset="0" stop-color="#32A071"/><stop offset="1" stop-color="#00F076"/></linearGradient>
-            </defs>
-            <path d="M48 72c0-15 17-24 30-16l239 147-63 63L48 88V72z" fill="url(#gp1)"/>
-            <path d="M48 424c0 15 17 24 30 16l239-147-63-63L48 408v16z" fill="url(#gp4)"/>
-            <path d="M317 203l77-47c14-8 30 2 30 18v163c0 16-16 26-30 18l-77-47-63-52 63-53z" fill="url(#gp2)"/>
-            <path d="M317 203l-63 53-206-168c0-1 0-1 0-1 0-15 17-24 30-16l239 147z" fill="url(#gp3)" opacity=".9"/>
-          </svg>
+        <a class="btn btn--ghost" href="#privacy">Privacy</a>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener" aria-label="Download on Google Play">
           Get on Google Play
         </a>
       </nav>
@@ -166,122 +138,61 @@
 
   <!-- Main -->
   <main class="wrap">
-    <!-- HERO -->
-    <section class="section hero" id="home" style="margin-top: clamp(12px, 4vh, 28px)">
+    <!-- HERO (compact) -->
+    <section class="section hero" id="home" style="margin-top: clamp(8px, 3vh, 20px)">
       <div>
-        <div class="hero__eyebrow">PRIVATE • OFFLINE • NATAL‑ALIGNED</div>
-        <h1 class="title">Your cosmic rhythm,<br/> beautifully organized</h1>
-        <p class="subtitle">AstroCycles runs an astronomy‑grade engine entirely on your device. Add birth details once and explore live moon phases, transits & notifications, tarot, and compatibility aligned to your natal chart — privately and offline.</p>
+        <div class="eyebrow">PRIVATE • OFFLINE • NATAL-ALIGNED</div>
+        <h1 class="title">Your cosmic rhythm, beautifully organized</h1>
+        <p class="subtitle">An astronomy-grade engine that runs on your device. Add birth details once and explore phases, transits, tarot, and compatibility — privately and offline.</p>
         <div class="pills" aria-hidden="true">
-          <span class="pill">On‑device • Offline</span>
-          <span class="pill">Natal‑based guidance</span>
-          <span class="pill">Transits & alerts</span>
-          <span class="pill">Daily tarot</span>
-          <span class="pill">Free • Ad‑supported</span>
+          <span class="pill">On-device • Offline</span>
+          <span class="pill">Natal-based guidance</span>
+          <span class="pill">Free • Ad-supported</span>
         </div>
         <div class="hero__actions">
           <a class="btn" href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener">Download on Google Play</a>
-          <a class="btn btn--ghost" href="#faq">How it keeps data private</a>
         </div>
       </div>
 
       <!-- Right: QR / store panel -->
-      <div class="hero__panel" aria-label="Install with QR">
+      <div class="panel" aria-label="Install with QR">
         <div class="aura" aria-hidden="true"></div>
         <a href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener">
           <img class="qr" src="./assets/astrocyclesQR.png" alt="Scan to open AstroCycles on Google Play" loading="eager" decoding="async">
         </a>
         <div class="qr-caption">Scan with your camera to install</div>
-        <div style="opacity:.7; font-size:.9rem; margin-top:4px">Lifestyle • Updated Oct 30, 2025 • Contains ads</div>
       </div>
     </section>
 
-    <!-- FEATURES -->
-    <section class="section" id="features">
-      <div class="grid cols-3">
-        <article class="card">
-          <div class="ficon">☽</div>
-          <h3>Live Astronomy Engine</h3>
-          <p>Real‑time moon phase, rise/set, sun position, and planetary transits calculated locally — works offline after setup.</p>
-        </article>
-        <article class="card">
-          <div class="ficon">℞</div>
-          <h3>Transits & Notifications</h3>
-          <p>Sign ingress alerts, retrograde reminders, and optional prompts tied to your chart so timing feels natural.</p>
-        </article>
-        <article class="card">
-          <div class="ficon">♡</div>
-          <h3>Tarot & Compatibility</h3>
-          <p>Daily tarot (up to five pulls), horoscope generation from multiple alignments, and synastry/compatibility views.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- DIFFERENTIATORS -->
-    <section class="section grid cols-2">
-      <div class="card">
-        <h3>Private & Personal</h3>
-        <p>AstroCycles runs its own celestial engine on your device — no external astrology APIs, no cloud storage. Your chart and location stay on your phone.</p>
-        <ul class="list">
-          <li>Natal‑aligned insights from your full birth chart</li>
-          <li>Approximate location for timing (never stored)</li>
-          <li>Dual calendars: Gregorian & Lunar/Babylonian</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Free, with control</h3>
-        <p>Banner ads keep the app free. Ad preferences are configurable and can be paused for short periods. There are no subscriptions or locked features.</p>
-        <p class="subnote">Anonymous analytics only — core calculations stay local.</p>
-      </div>
-    </section>
-
-    <!-- GALLERY (drop in screenshots later) -->
-    <section class="section">
-      <h3 style="margin:0 0 10px">Screenshots</h3>
-      <div class="gallery" aria-label="App screenshots">
-        <img class="shot" src="./assets/screen1.png" alt="Calendar view with moon phases" loading="lazy"/>
+    <!-- Screens (small strip) -->
+    <section class="section" aria-label="App screenshots">
+      <div class="gallery">
+        <img class="shot" src="./assets/screen1.png" alt="Calendar with moon phases" loading="lazy"/>
         <img class="shot" src="./assets/screen2.png" alt="Transit alerts" loading="lazy"/>
-        <img class="shot" src="./assets/screen3.png" alt="Tarot daily pulls" loading="lazy"/>
-        <img class="shot" src="./assets/screen4.png" alt="Compatibility insights" loading="lazy"/>
+        <img class="shot" src="./assets/screen3.png" alt="Daily tarot" loading="lazy"/>
       </div>
     </section>
 
-    <!-- QUOTE -->
-    <section class="section">
-      <div class="quote">
-        <div style="font-size:1.5rem; line-height:1">★</div>
-        <div>
-          <b>“Clean, calm, and surprisingly useful day to day.”</b>
-          <div><small>— Early tester</small></div>
+    <!-- Privacy at a glance -->
+    <section class="section" id="privacy" aria-label="Privacy at a glance">
+      <div class="card">
+        <h3 style="margin:.1rem 0 .4rem">Privacy at a glance</h3>
+        <ul class="list">
+          <li><b>On-device:</b> Birth details & notes stay on your phone.</li>
+          <li><b>Location (optional):</b> Only when you tap update; processed on-device for sun/moon times.</li>
+          <li><b>Ads & diagnostics:</b> AdMob for ads, Firebase for analytics/crash reports. Consent via UMP where required.</li>
+        </ul>
+        <div style="margin-top:.5rem">
+          <a class="btn btn--ghost" href="https://astrocycles.uk/privacy">Read full Privacy Policy</a>
         </div>
       </div>
     </section>
 
-    <!-- FAQ / DATA PRIVACY -->
-    <section class="section" id="faq">
-      <h3 style="margin:0 0 12px">FAQ</h3>
-      <details>
-        <summary>Does it work offline?</summary>
-        <div style="opacity:.9; padding-top:8px">Yes. After initial setup, all core calculations run locally without an internet connection.</div>
-      </details>
-      <details>
-        <summary>What data leaves my device?</summary>
-        <div style="opacity:.9; padding-top:8px">Anonymous analytics and crash reports to improve stability. Birth data and location used for timing stay on your phone.</div>
-      </details>
-      <details>
-        <summary>Is everything free?</summary>
-        <div style="opacity:.9; padding-top:8px">Yes. The app is free with banner ads. You can temporarily pause ads. There are no subscriptions.</div>
-      </details>
-    </section>
-
-    <!-- Store CTA (bottom) -->
+    <!-- Bottom CTA -->
     <section class="section" aria-label="Get AstroCycles">
-      <div class="card" style="display:grid; gap:14px; align-items:center; grid-template-columns: 1fr; text-align:center">
-        <h3 style="margin:.2rem 0">Get AstroCycles on Google Play</h3>
-        <div style="opacity:.85">Tap the button or scan the QR at the top of the page to install on your phone.</div>
-        <div>
-          <a class="btn" href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener">Download on Google Play</a>
-        </div>
+      <div class="card" style="display:grid; gap:12px; align-items:center; grid-template-columns: 1fr; text-align:center">
+        <div>Ready to try it?</div>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener">Get it on Google Play</a>
       </div>
     </section>
   </main>
