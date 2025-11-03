@@ -207,9 +207,9 @@
   <div class="stars4" aria-hidden="true"></div>
   <div class="container">
     <h1>Privacy Policy for Astrocycles</h1>
-    <p><strong>Last Updated:</strong> 12/10/2025</p>
+    <p><strong>Last Updated:</strong> 03 November 2025</p>
 
-    <p>Astrocycles (“we”, “us”, or “our”) respects your privacy. This policy explains what data the app processes locally on your device, what limited data may be collected by third-party advertising partners, and your choices.</p>
+    <p>Astrocycles (“we”, “us”, or “our”) respects your privacy. This policy explains what data the app processes locally on your device, what limited data may be collected by third-party partners, and your choices.</p>
 
     <h2>1) Information You Enter (Stored Only on Your Device)</h2>
     <p>Astrocycles is designed so that your astrology data remains on <strong>your device</strong>. We do <strong>not</strong> transmit it to our servers.</p>
@@ -218,7 +218,7 @@
       <li>Date/time of birth</li>
       <li>Place of birth</li>
       <li>Optional partner info (name, date/time/place of birth)</li>
-      <li>Optional device location (for moon/sun times & local sky info)</li>
+      <li>Optional device location (for moon/sun times &amp; local sky info)</li>
       <li>Journal entries or notes</li>
     </ul>
     <p><strong>How it’s used:</strong> Solely to generate charts, sky windows, and interpretations inside the app.</p>
@@ -228,13 +228,28 @@
     <ul>
       <li><strong>Optional</strong> – You may deny location and still use the app.</li>
       <li><strong>Foreground-only</strong> – The app does not access location in the background.</li>
-      <li><strong>Local-only</strong> – Your location is <strong>not sent to our servers</strong> or stored by us.</li>
+      <li><strong>User-initiated</strong> – Requested when you tap an in-app control (e.g., “Update current location”).</li>
+      <li><strong>Local-only</strong> – Your precise location is used on-device for calculations and is <strong>not sent to our servers</strong> or stored by us.</li>
       <li><strong>Purpose-limited</strong> – Used only for sky calculations and shown inside the app.</li>
     </ul>
     <p>If you prefer, you may manually search for a town or location instead of enabling device location. You can disable location access anytime in your Android system settings.</p>
 
-    <h2>2) Advertising & Third-Party Data</h2>
-    <p>Astrocycles displays ads using the <strong>Google Mobile Ads SDK (AdMob)</strong>. We do not run our own analytics or back-end collection of your astrology inputs. However, AdMob may collect certain device and app-interaction data to serve and measure ads.</p>
+    <h2>2) Advertising, Analytics &amp; Third-Party Data</h2>
+    <p>We do not collect or upload your astrology inputs to our servers. The app integrates third-party SDKs that may process limited device/app data for advertising, analytics, and diagnostics:</p>
+
+    <h3>Analytics &amp; Diagnostics (Firebase)</h3>
+    <div class="card">
+      <p>We use <strong>Google Analytics for Firebase</strong> (aggregated app analytics) and <strong>Firebase Crashlytics</strong> (crash reporting). These services may process:</p>
+      <ul>
+        <li><strong>Identifiers:</strong> app-instance ID and, where available, Android Advertising ID (AAID) or app-set ID.</li>
+        <li><strong>App events:</strong> first open, updates, session data, feature usage counts (aggregated).</li>
+        <li><strong>Diagnostics:</strong> crash logs and stability signals.</li>
+      </ul>
+      <p class="muted">Used to understand app performance and fix issues. Data are transmitted by Google services using industry-standard transport encryption.</p>
+    </div>
+
+    <h3>Advertising (AdMob)</h3>
+    <p>Astrocycles displays ads using the <strong>Google Mobile Ads SDK (AdMob)</strong>. AdMob may collect certain device and app-interaction data to serve and measure ads.</p>
 
     <h3>What AdMob may collect</h3>
     <div class="card">
@@ -242,14 +257,14 @@
         <li><strong>Identifiers:</strong> Android Advertising ID (AAID) or similar.</li>
         <li><strong>Approximate location (derived from IP)</strong> for regional ad compliance.</li>
         <li><strong>App interactions:</strong> ad impressions, clicks.</li>
-        <li><strong>Device & diagnostics:</strong> error logs, OS version.</li>
+        <li><strong>Device &amp; diagnostics:</strong> error logs, OS version.</li>
       </ul>
-      <p class="muted">These data points are processed by Google/AdMob under their privacy policy and used for: advertising/marketing, analytics/measurement, and fraud prevention/security/compliance.</p>
+      <p class="muted">These data points are processed by Google/AdMob under their privacy policy and used for advertising/marketing, analytics/measurement, and fraud prevention/security/compliance. Data are transmitted using industry-standard transport encryption.</p>
     </div>
 
     <h3>Personalized vs. Non-Personalized Ads</h3>
     <ul>
-      <li><strong>Consent-based personalization (EEA/UK and where required):</strong> When you grant consent, AdMob may use data (e.g., AAID, app interactions) to show more relevant ads. If you deny or withdraw consent, the app requests <strong>non-personalized ads (NPA)</strong>.</li>
+      <li><strong>Consent-based personalization (EEA/UK/CH and where required):</strong> We use Google’s <strong>User Messaging Platform (UMP)</strong>, a TCF-certified consent solution. When you grant consent, AdMob may use data (e.g., AAID, app interactions) to show more relevant ads. If you deny or withdraw consent, the app requests <strong>non-personalized or limited ads</strong>.</li>
       <li><strong>Outside consent regions:</strong> We honor your device settings (e.g., “Opt out of Ads Personalization”). You can also reset your Advertising ID.</li>
     </ul>
 
@@ -258,33 +273,35 @@
 
     <h2>4) Do We Share or Sell Your Astrology Data?</h2>
     <p><strong>No.</strong> Your astrology inputs (birth details, notes, etc.) stay on your device and are not sent to us. We do not sell your personal data.</p>
-    <p>Ad delivery involves <strong>sharing limited device/app data with AdMob</strong> (as a service provider/processor) to provide, measure, and secure ads. This is typical for free apps using third-party ads.</p>
+    <p>Ad delivery and analytics/diagnostics involve <strong>limited device/app data</strong> being sent directly to Google (AdMob/Firebase) to provide, measure, secure, and improve services. This is typical for free apps using third-party SDKs.</p>
 
-    <h2>5) Your Choices & Controls</h2>
+    <h2>5) Your Choices &amp; Controls</h2>
     <ul>
-      <li><strong>Consent (EEA/UK):</strong> You can grant or deny consent for personalized ads in the consent prompt. You can revisit choices in app settings if provided, or by reinstalling/resetting consent where supported.</li>
+      <li><strong>Consent (EEA/UK/CH):</strong> Manage ad consent via the UMP consent prompt. You can revisit choices in app settings if provided, or by reinstalling/resetting consent where supported.</li>
       <li><strong>Android ad personalization:</strong> On your device go to <em>Settings &gt; Google &gt; Ads</em> (or similar) to <strong>opt out of Ads Personalization</strong> and/or <strong>reset your Advertising ID (AAID)</strong>.</li>
       <li><strong>Location:</strong> You can disable location permissions for Astrocycles in Android Settings.</li>
-      <li><strong>Data deletion:</strong> You can delete your astrology entries in the app. Because we don’t host your astrology data, removing the app (or clearing its storage) removes that local data.</li>
+      <li><strong>Data deletion (local):</strong> You can delete your astrology entries in the app. Because we don’t host your astrology data, removing the app (or clearing its storage) removes that local data.</li>
+      <li><strong>Requests about analytics/diagnostics data:</strong> You may contact us with your <em>Android Advertising ID (AAID)</em> so we can reasonably route a deletion/objection request to our providers where supported.</li>
     </ul>
 
     <h2>6) Legal Bases (EEA/UK)</h2>
     <ul>
       <li><strong>Personalized advertising:</strong> <em>Consent</em>.</li>
-      <li><strong>Non-personalized ads, measurement & fraud prevention:</strong> <em>Legitimate interests</em> (and/or compliance obligations) of our advertising partners.</li>
+      <li><strong>Non-personalized ads, measurement &amp; fraud prevention:</strong> <em>Legitimate interests</em> (and/or compliance obligations) of our advertising partners.</li>
+      <li><strong>Basic analytics &amp; crash reporting (Firebase):</strong> <em>Legitimate interests</em> in app performance, quality, and security.</li>
     </ul>
 
     <h2>7) Children’s Privacy</h2>
     <p>Astrocycles is not directed to children under 13 (or the age of digital consent in your region). We do not knowingly collect personal information from children.</p>
 
     <h2>8) Security</h2>
-    <p>Your astrology data remains on your device. We recommend using device security features (passcode/biometrics) and OS updates to protect your information.</p>
+    <p>Your astrology data remains on your device. We recommend using device security features (passcode/biometrics) and OS updates to protect your information. Data sent by third-party SDKs (e.g., AdMob/Firebase) is transmitted using industry-standard transport encryption.</p>
 
     <h2>9) Retention</h2>
-    <p>Astrology data you enter is stored locally until you delete it or uninstall the app. Ad-related data retention is controlled by AdMob/Google per their policies (for ads measurement, fraud prevention, and regulatory compliance).</p>
+    <p>Astrology data you enter is stored locally until you delete it or uninstall the app. Ad/analytics data retention is controlled by Google (AdMob/Firebase) per their policies (for ads measurement, fraud prevention, and regulatory compliance).</p>
 
     <h2>10) International Transfers</h2>
-    <p>AdMob/Google may process limited device/ad data on servers located outside your country. See Google’s policies for details on safeguards used for international transfers.</p>
+    <p>Google (AdMob/Firebase) may process limited device/ad/analytics data on servers located outside your country. See Google’s policies for details on safeguards used for international transfers.</p>
 
     <h2>11) Changes to This Policy</h2>
     <p>We may update this policy from time to time. Updates will be posted here with a new “Last Updated” date.</p>
@@ -296,16 +313,17 @@
     <h2>Appendix: Data Safety Summary (Google Play)</h2>
     <div class="card">
       <p><strong>Collected by Astrocycles (developer):</strong> <em>None.</em> Astrology inputs are processed and stored locally only.</p>
-      <p><strong>Optional device location (device GPS):</strong> Processed locally only when enabled by user. <strong>Not transmitted or shared.</strong></p>
-      <p><strong>Collected by third parties (AdMob):</strong></p>
+      <p><strong>Optional precise location (device GPS):</strong> Processed on-device only when enabled by user. <strong>Not transmitted or shared.</strong></p>
+      <p><strong>Collected by third parties (AdMob &amp; Firebase):</strong></p>
       <ul>
-        <li><strong>Approximate location (IP-based only)</strong> – ads delivery/compliance</li>
-        <li><strong>Device or other IDs (AAID)</strong> – ads measurement</li>
-        <li><strong>App interactions</strong> – ads measurement</li>
-        <li><strong>Diagnostics</strong> – fraud prevention</li>
+        <li><strong>App activity</strong> (e.g., ad views/clicks; basic app events like first open, session data)</li>
+        <li><strong>Device or other IDs</strong> (AAID, app-set ID)</li>
+        <li><strong>Diagnostics</strong> (crash logs, error signals)</li>
+        <li><strong>Approximate location</strong> (IP-based, for ads delivery/compliance; AdMob)</li>
       </ul>
       <p><strong>Purposes:</strong> Advertising/marketing, Analytics/measurement, Fraud prevention, security, compliance.</p>
-      <p><strong>Data handling choices:</strong> Personalized ads shown only with consent where required; otherwise non-personalized ads are requested.</p>
+      <p><strong>Security practices:</strong> Data transmitted by these SDKs uses industry-standard transport encryption.</p>
+      <p><strong>Consent:</strong> Personalised ads shown only with consent where required (managed via UMP); otherwise non-personalised/limited ads are requested. Device-level ad settings are honoured.</p>
     </div>
 
     <footer>
