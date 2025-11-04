@@ -1,8 +1,8 @@
 {
   "android": {
-    "latestVersionCode": 22,
-    "minVersionCode": 22,
-    "forceFrom": 22,
+    "latestVersionCode": 21,
+    "minVersionCode": 21,
+    "forceFrom": 21,
     "message": "Test",
     "storeUrl": "https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles"
   },
