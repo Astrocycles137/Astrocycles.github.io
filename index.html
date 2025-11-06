@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AstroCycles — Personal Astrology, Moon Phases & Tarot</title>
+  <title>AstroCycles — Private, Offline & Free on Google Play</title>
   <meta name="description" content="AstroCycles runs an on-device celestial engine aligned to your natal data. Private. Offline. Free on Google Play." />
   <meta name="theme-color" content="#0a0716" />
 
   <!-- OG / SEO -->
-  <meta property="og:title" content="AstroCycles — Your cosmic rhythm, beautifully organized" />
-  <meta property="og:description" content="On-device celestial engine, live phases & transits, tarot, compatibility. Private. Offline. Free on Google Play." />
+  <meta property="og:title" content="AstroCycles — Private, Offline & Free" />
+  <meta property="og:description" content="On-device celestial engine with phases, transits & tarot. Private. Offline. Free on Google Play." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="./assets/og-card.png" />
   <meta property="og:url" content="https://astrocycles.uk" />
@@ -23,17 +23,11 @@
   <style>
     :root{
       --bg:#070612;
-      --panel:#0b0a17;
+      --panel:rgba(18,16,36,.92);
       --ink:#f2f1ff;
       --muted:#c8c4ff;
-      --accent:#a78bfa; /* plum */
-      --accent-2:#7c61e9;
       --border:rgba(167,139,250,.22);
       --ring: rgba(167,139,250,.45);
-      --ok:#6ee7b7;
-      --warn:#fbbf24;
-      --card: rgba(22,20,40,.65);
-      --card-strong: rgba(18,16,36,.9);
       --shadow: 0 10px 30px rgba(0,0,0,.35);
     }
 
@@ -41,7 +35,7 @@
     html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;}
     *{box-sizing:border-box}
     img{max-width:100%;display:block}
-    a{color:inherit}
+    a{color:inherit;text-decoration:none}
 
     /* Backdrop */
     .bg{
@@ -55,62 +49,46 @@
     }
     .vignette{position:fixed; inset:-10px; pointer-events:none; box-shadow:inset 0 0 180px rgba(0,0,0,.75); z-index:-1}
 
-    /* Grid & rhythm */
-    .wrap{max-width:980px; margin:0 auto; padding: clamp(12px, 2vh, 20px) 18px 60px}
-    .section{margin: clamp(24px, 6vh, 56px) 0}
-    .grid{display:grid; gap:16px}
-    @media(min-width: 920px){ .grid.cols-2{ grid-template-columns: 1.05fr .95fr } }
-    @media(min-width: 920px){ .grid.cols-3{ grid-template-columns: repeat(3,1fr) } }
+    /* Center card */
+    .center{min-height:100%; display:grid; place-items:center; padding:24px}
+    .card{
+      width:min(680px, 92vw);
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:20px 20px 24px;
+      text-align:center;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .aura{ position:absolute; inset:-35%; pointer-events:none; mix-blend-mode:screen; filter: blur(30px); opacity:.6;
+      background:
+        radial-gradient(45% 40% at 55% 30%, rgba(167,139,250,.35), transparent 60%),
+        radial-gradient(35% 40% at 30% 60%, rgba(120,200,255,.25), transparent 70%); }
+    .logo{width:56px;height:56px;border-radius:12px;margin:0 auto 10px;filter:drop-shadow(0 0 8px rgba(167,139,250,.35))}
+    .title{font-family:"Cinzel Decorative", serif; font-weight:700; letter-spacing:.06em; margin:.1rem 0 .25rem; font-size: clamp(1.4rem, 4.2vw, 2rem)}
+    .sub{opacity:.88; margin:0 0 12px}
+    .actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px }
 
-    /* Header (kept minimal) */
-    header{position:sticky; top:0; backdrop-filter:saturate(140%) blur(8px); background: linear-gradient(180deg, rgba(14,12,28,.85), rgba(14,12,28,.55)); border-bottom:1px solid rgba(167,139,250,.12); z-index:50}
-    .topbar{max-width:980px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:8px 18px}
-    .brand{display:flex; align-items:center; gap:10px; text-decoration:none}
-    .brand img{width:28px; height:28px; border-radius:8px; filter:drop-shadow(0 0 8px rgba(167,139,250,.35))}
-    .brand span{font-weight:800; letter-spacing:.06em}
-
-    .btn{appearance:none; border:1px solid var(--border); border-radius:12px; padding:.6rem .9rem; font-weight:800; letter-spacing:.02em; text-decoration:none; display:inline-flex; align-items:center; gap:.6rem; background: linear-gradient(180deg, rgba(167,139,250,.25), rgba(167,139,250,.08)); box-shadow: var(--shadow); transition: transform .08s ease, box-shadow .2s ease, border-color .2s ease}
+    .btn{
+      appearance:none; border:1px solid var(--border); border-radius:12px; padding:.7rem 1rem;
+      font-weight:800; letter-spacing:.02em; display:inline-flex; align-items:center; justify-content:center;
+      background: linear-gradient(180deg, rgba(167,139,250,.22), rgba(167,139,250,.08));
+      box-shadow: var(--shadow); transition: transform .08s ease, box-shadow .2s ease, border-color .2s ease
+    }
     .btn:hover{ box-shadow:0 0 0 4px var(--ring), 0 14px 30px rgba(0,0,0,.35); border-color: rgba(167,139,250,.48)}
     .btn:active{ transform: translateY(1px)}
-    .btn--ghost{ background: linear-gradient(180deg, rgba(167,139,250,.12), rgba(167,139,250,.05)); }
 
-    /* Hero */
-    .hero{ display:grid; gap:18px; align-items:center; }
-    @media(min-width: 920px){ .hero{ grid-template-columns: 1.05fr .95fr; gap:24px } }
-    .eyebrow{font-weight:800; letter-spacing:.08em; color:var(--muted)}
-    .title{font-family:"Cinzel Decorative", serif; font-weight:700; letter-spacing:.06em; margin:.1rem 0 .4rem; font-size: clamp(1.6rem, 4.2vw, 2.6rem); text-shadow: 0 0 10px rgba(138,132,255,.18), 0 0 30px rgba(120,200,255,.10)}
-    .subtitle{opacity:.9; max-width: 60ch}
-    .pills{ display:flex; flex-wrap:wrap; gap:8px; margin:.3rem 0 0 }
-    .pill{border:1px solid var(--border); border-radius:999px; padding:.45rem .75rem; font-size:.92rem; background: rgba(22,20,40,.4)}
+    .qr{ width:min(56vw, 220px); aspect-ratio:1/1; background:#fff; border-radius:14px; padding:14px; border:1px solid var(--border); image-rendering:pixelated; margin: 10px auto 6px }
+    .caption{ opacity:.82; font-size:.95rem }
 
-    .panel{ background: var(--card-strong); border:1px solid var(--border); border-radius:16px; padding:16px; box-shadow: var(--shadow); position:relative; overflow:hidden }
-    .panel .aura{ position:absolute; inset:-35%; background:
-        radial-gradient(45% 40% at 55% 30%, rgba(167,139,250,.35), transparent 60%),
-        radial-gradient(35% 40% at 30% 60%, rgba(120,200,255,.25), transparent 70%);
-      mix-blend-mode:screen; filter: blur(30px); opacity:.6 }
-    .qr{ width:min(56vw, 210px); aspect-ratio:1/1; background:#fff; border-radius:14px; padding:14px; border:1px solid var(--border); image-rendering:pixelated; position:relative; z-index:1 }
-    .qr-caption{ margin-top:8px; opacity:.82; font-size:.95rem }
-    .hero__actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px }
+    footer{ position:fixed; left:0; right:0; bottom:0; padding:10px 14px; display:flex; justify-content:center; gap:14px; font-size:.95rem; color:var(--muted)}
+    footer a{ color:var(--muted); border-bottom:1px dashed rgba(167,139,250,.35) }
+    footer a:hover{ color:#fff; border-bottom-color: rgba(167,139,250,.65) }
 
-    /* Small cards / lists */
-    .card{ background: var(--card); border:1px solid var(--border); border-radius:14px; padding:16px; backdrop-filter: blur(6px); box-shadow: var(--shadow) }
-    .card h3{ margin:.1rem 0 .25rem; font-size:1.05rem }
-    .list{ margin:.2rem 0 0; padding-left: 1rem }
-    .list li{ margin:.25rem 0 }
-
-    /* Gallery */
-    .gallery{ display:grid; grid-auto-flow:column; gap:12px; overflow:auto; padding-bottom:6px }
-    .shot{ min-width:220px; border-radius:12px; border:1px solid var(--border); background: rgba(255,255,255,.02) }
-
-    /* Footer */
-    footer{ border-top:1px solid rgba(255,255,255,.08); background: linear-gradient(180deg, rgba(20,18,38,.4), rgba(20,18,38,.15)) }
-    .foot{ max-width:980px; margin:0 auto; padding:16px 18px; display:grid; gap:8px }
-    .foot-row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between }
-    .links a{ color: var(--muted); text-decoration:none; border-bottom:1px dashed rgba(167,139,250,.35) }
-    .links a:hover{ color:#fff; border-bottom-color: var(--accent) }
-
-    /* Accessibility & motion */
-    a:focus, button:focus { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 8px }
+    /* Accessibility */
+    a:focus, button:focus { outline: 3px solid rgba(167,139,250,.8); outline-offset: 2px; border-radius: 8px }
     @media (prefers-reduced-motion: reduce){
       *{ animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior:auto !important }
     }
@@ -120,103 +98,28 @@
   <div class="bg" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
 
-  <!-- Header (minimal) -->
-  <header>
-    <div class="topbar">
-      <a class="brand" href="#" aria-label="AstroCycles Home">
-        <img src="./assets/icon-nobg.png" alt="AstroCycles logo" width="28" height="28" />
-        <span>AstroCycles</span>
+  <main class="center">
+    <section class="card" aria-label="Get AstroCycles">
+      <div class="aura" aria-hidden="true"></div>
+      <img class="logo" src="./assets/icon-nobg.png" alt="AstroCycles logo" width="56" height="56" />
+      <h1 class="title">AstroCycles</h1>
+      <p class="sub">Private • Offline • Natal-aligned</p>
+
+      <a class="btn" href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener" aria-label="Open AstroCycles on Google Play">
+        Get it on Google Play
       </a>
-      <nav class="nav" aria-label="Primary">
-        <a class="btn btn--ghost" href="#privacy">Privacy</a>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener" aria-label="Download on Google Play">
-          Get on Google Play
-        </a>
-      </nav>
-    </div>
-  </header>
 
-  <!-- Main -->
-  <main class="wrap">
-    <!-- HERO (compact) -->
-    <section class="section hero" id="home" style="margin-top: clamp(8px, 3vh, 20px)">
-      <div>
-        <div class="eyebrow">PRIVATE • OFFLINE • NATAL-ALIGNED</div>
-        <h1 class="title">Your cosmic rhythm, beautifully organized</h1>
-        <p class="subtitle">An astronomy-grade engine that runs on your device. Add birth details once and explore phases, transits, tarot, and compatibility — privately and offline.</p>
-        <div class="pills" aria-hidden="true">
-          <span class="pill">On-device • Offline</span>
-          <span class="pill">Natal-based guidance</span>
-          <span class="pill">Free • Ad-supported</span>
-        </div>
-        <div class="hero__actions">
-          <a class="btn" href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener">Download on Google Play</a>
-        </div>
-      </div>
-
-      <!-- Right: QR / store panel -->
-      <div class="panel" aria-label="Install with QR">
-        <div class="aura" aria-hidden="true"></div>
-        <a href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener">
-          <img class="qr" src="./assets/astrocyclesQR.png" alt="Scan to open AstroCycles on Google Play" loading="eager" decoding="async">
-        </a>
-        <div class="qr-caption">Scan with your camera to install</div>
-      </div>
-    </section>
-
-    <!-- Screens (small strip) -->
-    <section class="section" aria-label="App screenshots">
-      <div class="gallery">
-        <img class="shot" src="./assets/screen1.png" alt="Calendar with moon phases" loading="lazy"/>
-        <img class="shot" src="./assets/screen2.png" alt="Transit alerts" loading="lazy"/>
-        <img class="shot" src="./assets/screen3.png" alt="Daily tarot" loading="lazy"/>
-      </div>
-    </section>
-
-    <!-- Privacy at a glance -->
-    <section class="section" id="privacy" aria-label="Privacy at a glance">
-      <div class="card">
-        <h3 style="margin:.1rem 0 .4rem">Privacy at a glance</h3>
-        <ul class="list">
-          <li><b>On-device:</b> Birth details & notes stay on your phone.</li>
-          <li><b>Location (optional):</b> Only when you tap update; processed on-device for sun/moon times.</li>
-          <li><b>Ads & diagnostics:</b> AdMob for ads, Firebase for analytics/crash reports. Consent via UMP where required.</li>
-        </ul>
-        <div style="margin-top:.5rem">
-          <a class="btn btn--ghost" href="https://astrocycles.uk/privacy">Read full Privacy Policy</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Bottom CTA -->
-    <section class="section" aria-label="Get AstroCycles">
-      <div class="card" style="display:grid; gap:12px; align-items:center; grid-template-columns: 1fr; text-align:center">
-        <div>Ready to try it?</div>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener">Get it on Google Play</a>
-      </div>
+      <a href="https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles" target="_blank" rel="noopener" aria-label="Scan QR to open on Google Play">
+        <img class="qr" src="./assets/astrocyclesQR.png" alt="Scan to open AstroCycles on Google Play" loading="eager" decoding="async">
+      </a>
+      <div class="caption">Scan with your camera to install</div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
-    <div class="foot">
-      <div class="foot-row">
-        <div class="links" role="navigation" aria-label="Footer">
-          <a href="https://astrocycles.uk/privacy">Privacy</a>
-          &nbsp;·&nbsp;
-          <a href="mailto:Astrocycles137@outlook.com">Contact</a>
-        </div>
-        <div class="links"><span>Developer: OneThreeSeven</span></div>
-      </div>
-      <div class="foot-row" style="opacity:.78; font-size:.9rem">
-        <div>© <span id="year"></span> AstroCycles. All rights reserved.</div>
-        <div>Made with ✨ in the witchy hours.</div>
-      </div>
-    </div>
+    <a href="https://astrocycles.uk/privacy">Privacy</a>
+    <span aria-hidden="true">·</span>
+    <a href="mailto:Astrocycles137@outlook.com">Contact</a>
   </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
