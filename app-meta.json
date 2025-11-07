@@ -1,7 +1,7 @@
 {
   "android": {
     "latestVersionCode": 24,
-    "minVersionCode": 0,
+    "minVersionCode": 21,
     "forceFrom": 0,
     "message": "Post-launch bug fixes ",
     "storeUrl": "https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles"
