@@ -1,9 +1,9 @@
 {
   "android": {
-    "latestVersionCode": 26,
+    "latestVersionCode": 27,
     "minVersionCode": 21,
     "forceFrom": 0,
-    "message": "",
+    "message": "Calendar upgrades",
     "storeUrl": "https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles"
   },
   "metaUpdated": "2025-11-04T21:00:00Z"
