@@ -1,9 +1,9 @@
 {
   "android": {
-    "latestVersionCode": 28,
+    "latestVersionCode": 30,
     "minVersionCode": 21,
     "forceFrom": 0,
-    "message": "Feature improvements",
+    "message": "Bug Fixes & Improvements",
     "storeUrl": "https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles"
   },
   "metaUpdated": "2025-11-14T16:00:00Z"
