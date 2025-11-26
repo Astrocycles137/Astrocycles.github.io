@@ -1,9 +1,9 @@
 {
   "android": {
-    "latestVersionCode": 32,
+    "latestVersionCode": 33,
     "minVersionCode": 21,
     "forceFrom": 0,
-    "message": "",
+    "message": "+ Daily Partner Horoscope",
     "storeUrl": "https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles"
   },
   "metaUpdated": "2025-11-14T16:00:00Z"
