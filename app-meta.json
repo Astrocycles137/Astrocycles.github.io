@@ -1,10 +1,10 @@
 {
   "android": {
-    "latestVersionCode": 33,
+    "latestVersionCode": 35,
     "minVersionCode": 21,
     "forceFrom": 0,
-    "message": "+ Daily Partner Horoscope",
+    "message": "NEW Tarot Deck!",
     "storeUrl": "https://play.google.com/store/apps/details?id=io.github.astrocycles137.astrocycles"
   },
-  "metaUpdated": "2025-11-14T16:00:00Z"
+  "metaUpdated": "2025-12-01T16:00:00Z"
 }
